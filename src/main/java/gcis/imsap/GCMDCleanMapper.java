@@ -91,7 +91,7 @@ public class GCMDCleanMapper {
 				//StmtIterator itr = CleanModel.listStatements(s, p, v);
 				StmtIterator itr = model1.listStatements(s, p, v);
 				String labels = "";
-				while(itr.hasNext()){
+				while(itr.hasNext()) {
 					 Statement stmt = itr.next();
 					 String object = stmt.getObject().toString();
 					 labels += object+" ";
