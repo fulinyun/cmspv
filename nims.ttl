@@ -1,0 +1,1266 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix term: <http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/> .
+@prefix : <http://cmspv.tw.rpi.edu/rdf/nims#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix vocab: <http://cmspv.tw.rpi.edu/rdf/vocab/> .
+@base <http://cmspv.tw.rpi.edu/rdf/nims> .
+
+<http://cmspv.tw.rpi.edu/rdf/nims> rdf:type owl:Ontology ;
+                                   
+                                   owl:imports <http://www.w3.org/TR/skos-reference/skos-owl1-dl.rdf> .
+
+
+#################################################################
+#
+#    Annotation properties
+#
+#################################################################
+
+
+skos:prefLabel rdf:type owl:AnnotationProperty ;
+               
+               rdfs:subPropertyOf rdfs:label .
+
+
+
+skos:editorialNote rdf:type owl:AnnotationProperty ;
+                   
+                   rdfs:subPropertyOf skos:note .
+
+
+
+
+
+#################################################################
+#
+#    Datatypes
+#
+#################################################################
+
+
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://www.w3.org/2004/02/skos/core#inScheme
+
+skos:inScheme rdf:type owl:ObjectProperty .
+
+
+
+###  http://www.w3.org/2004/02/skos/core#narrower
+
+skos:narrower rdf:type owl:ObjectProperty .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://www.w3.org/2004/02/skos/core#Concept
+
+skos:Concept rdf:type owl:Class .
+
+
+
+###  http://www.w3.org/2004/02/skos/core#ConceptScheme
+
+skos:ConceptScheme rdf:type owl:Class .
+
+
+
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims
+
+vocab:nims rdf:type owl:NamedIndividual ,
+                    skos:ConceptScheme ;
+           
+           skos:prefLabel "NIMS Data Categories" .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0000
+
+term:0000 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Commercial Leases and other Special Use Allocations"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0001
+
+term:0001 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Biology and Habitats"@en ;
+          
+          skos:topConceptOf vocab:nims ;
+          
+          skos:inScheme vocab:nims ;
+          
+          skos:narrower term:0041 ,
+                        term:0042 ,
+                        term:0043 ,
+                        term:0057 ,
+                        term:0058 ,
+                        term:0059 ,
+                        term:0060 ,
+                        term:0061 ,
+                        term:0062 ,
+                        term:0063 ,
+                        term:0064 .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0002
+
+term:0002 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Human Use"@en ;
+          
+          skos:inScheme vocab:nims ;
+          
+          skos:topConceptOf vocab:nims ;
+          
+          skos:narrower term:0031 ,
+                        term:0035 ,
+                        term:0036 ,
+                        term:0037 ,
+                        term:0040 .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0003
+
+term:0003 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Marine Protected Areas"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0004
+
+term:0004 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Energy and Mineral Resources"@en ;
+          
+          skos:inScheme vocab:nims ;
+          
+          skos:topConceptOf vocab:nims ;
+          
+          skos:narrower term:0013 ,
+                        term:0014 .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0005
+
+term:0005 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Administrative and Regulatory"@en ;
+          
+          skos:topConceptOf vocab:nims ;
+          
+          skos:inScheme vocab:nims ;
+          
+          skos:narrower term:0000 ,
+                        term:0003 ,
+                        term:0010 ,
+                        term:0011 ,
+                        term:0012 .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0006
+
+term:0006 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Cultural and Historic"@en ;
+          
+          skos:topConceptOf vocab:nims ;
+          
+          skos:inScheme vocab:nims ;
+          
+          skos:narrower term:0026 ,
+                        term:0027 ,
+                        term:0028 ,
+                        term:0029 ,
+                        term:0030 .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0007
+
+term:0007 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Ecological Functions, Processes, and Impacts"@en ;
+          
+          skos:topConceptOf vocab:nims ;
+          
+          skos:inScheme vocab:nims ;
+          
+          skos:narrower term:0080 ,
+                        term:0081 ,
+                        term:0082 ,
+                        term:0083 ,
+                        term:0084 ,
+                        term:0085 ,
+                        term:0086 ,
+                        term:0087 ,
+                        term:0088 ,
+                        term:0089 ,
+                        term:0090 ,
+                        term:0091 ,
+                        term:0092 .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0008
+
+term:0008 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Physical and Oceanographic"@en ;
+          
+          skos:inScheme vocab:nims ;
+          
+          skos:topConceptOf vocab:nims ;
+          
+          skos:narrower term:0065 ,
+                        term:0066 ,
+                        term:0067 ,
+                        term:0068 ,
+                        term:0069 ,
+                        term:0070 ,
+                        term:0071 ,
+                        term:0072 ,
+                        term:0073 ,
+                        term:0074 ,
+                        term:0075 .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0009
+
+term:0009 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Elevation and Bathymetry"@en ;
+          
+          skos:inScheme vocab:nims ;
+          
+          skos:topConceptOf vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0010
+
+term:0010 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Jurisdictional Boundaries: Domestic, Tribal, International"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0011
+
+term:0011 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Tribal Use Areas (e.g. Usual and Accustomed Areas)"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0012
+
+term:0012 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Other Spatial Measures Affecting Specific Areas"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0013
+
+term:0013 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Energy Resources"@en ;
+          
+          skos:inScheme vocab:nims ;
+          
+          skos:narrower term:0015 ,
+                        term:0016 ,
+                        term:0017 ,
+                        term:0018 ,
+                        term:0019 ,
+                        term:0020 ,
+                        term:0021 .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0014
+
+term:0014 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Other Non-living Resources"@en ;
+          
+          skos:inScheme vocab:nims ;
+          
+          skos:narrower term:0022 ,
+                        term:0023 ,
+                        term:0024 ,
+                        term:0025 .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0015
+
+term:0015 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Wind"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0016
+
+term:0016 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Tidal"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0017
+
+term:0017 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Currents"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0018
+
+term:0018 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Solar"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0019
+
+term:0019 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Geothermal"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0020
+
+term:0020 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Temperature Gradients and OTEC"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0021
+
+term:0021 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Wave"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0022
+
+term:0022 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Oil and Gas"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0023
+
+term:0023 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Gas Hydrates"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0024
+
+term:0024 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Sand"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0025
+
+term:0025 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Minerals"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0026
+
+term:0026 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Locations of Artifacts Reflecting US Maritime History"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0027
+
+term:0027 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Areas + Resources of Cultural Significance to Native Peoples"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0028
+
+term:0028 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Important View-sheds"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0029
+
+term:0029 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Historically Significant Properties"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0030
+
+term:0030 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Protected Areas"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0031
+
+term:0031 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Patterns of Current Uses by Sectors"@en ;
+          
+          skos:inScheme vocab:nims ;
+          
+          skos:narrower term:0032 ,
+                        term:0033 ,
+                        term:0034 .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0032
+
+term:0032 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Recreational"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0033
+
+term:0033 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Fishing (Commercial, Recreational, Harvest)"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0034
+
+term:0034 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Industrial, Military and Security"@en ;
+          
+          skos:editorialNote "grammar question: Should there be a comma between military and security?"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0035
+
+term:0035 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Drivers + Values (Market and Non-market) of Current Uses"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0036
+
+term:0036 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Maps of other Non-use Ecosystem Services"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0037
+
+term:0037 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Ports"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0038
+
+term:0038 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Cables, Pipelines, Power Grids"@en ;
+          
+          skos:inScheme vocab:nims ;
+          
+          skos:broader term:0002 .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0039
+
+term:0039 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Buoys"@en ;
+          
+          skos:inScheme vocab:nims ;
+          
+          skos:broader term:0002 .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0040
+
+term:0040 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Structures (e.g. Met Towers, Oil and Gas Platforms)"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0041
+
+term:0041 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Commonly Extracted Species"@en ;
+          
+          skos:inScheme vocab:nims ;
+          
+          skos:narrower term:0046 ,
+                        term:0047 ,
+                        term:0048 ,
+                        term:0049 ,
+                        term:0050 ,
+                        term:0051 .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0042
+
+term:0042 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Typically Non-extracted Species"@en ;
+          
+          skos:inScheme vocab:nims ;
+          
+          skos:narrower term:0052 ,
+                        term:0053 ,
+                        term:0054 ,
+                        term:0055 ,
+                        term:0056 .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0043
+
+term:0043 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Threatened and Endangered Species"@en ;
+          
+          skos:inScheme vocab:nims ;
+          
+          skos:narrower term:0044 ,
+                        term:0100 .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0044
+
+term:0044 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "State Listed Threatened and Endangered Species"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0045
+
+term:0045 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Internationally Listed Threatened and Endangered Species"@en ;
+          
+          skos:inScheme vocab:nims ;
+          
+          skos:broader term:0043 .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0046
+
+term:0046 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Fish"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0047
+
+term:0047 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Shellfish"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0048
+
+term:0048 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Algae"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0049
+
+term:0049 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Marine Mammals"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0050
+
+term:0050 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Birds"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0051
+
+term:0051 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Other Invertebrates"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0052
+
+term:0052 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Marine Mammals and Reptiles"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0053
+
+term:0053 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Fish"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0054
+
+term:0054 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Invertebrates"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0055
+
+term:0055 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Sea Birds"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0056
+
+term:0056 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Algae"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0057
+
+term:0057 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Biotic Habitat Distributions"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0058
+
+term:0058 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Habitat Characterizations with Standard Schemes"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0059
+
+term:0059 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Biogenic Habitats"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0060
+
+term:0060 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Biogeographical Maps with Distribution and Abundance of Relevant Species"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0061
+
+term:0061 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Areas of High Biodiversity"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0062
+
+term:0062 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Areas with Unique or Rare Species or Communities"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0063
+
+term:0063 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Ecological Indicies Applicable on a National Scale"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0064
+
+term:0064 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Estuarine / Coastal Exchange (e.g. Product, Nutrients, Pollution)"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0065
+
+term:0065 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Physical Habitats + Geomorphology"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0066
+
+term:0066 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Temperature, Salinity, pH"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0067
+
+term:0067 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Wave + Water Level Climatology; including SRL Rates"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0068
+
+term:0068 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Substrate Maps"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0069
+
+term:0069 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Water Column Features"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0070
+
+term:0070 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Functions and Processes"@en ;
+          
+          skos:inScheme vocab:nims ;
+          
+          skos:narrower term:0076 ,
+                        term:0077 ,
+                        term:0078 ,
+                        term:0079 .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0071
+
+term:0071 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Geographic Names"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0072
+
+term:0072 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Land Cover"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0073
+
+term:0073 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "US_Topo (MapServer)"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0074
+
+term:0074 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Imagery"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0075
+
+term:0075 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Historical"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0076
+
+term:0076 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Effects of Major Currents"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0077
+
+term:0077 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Connectivity, Linkages, and Zones of Separation"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0078
+
+term:0078 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Effects of Persistent Oceanography Features (e.g. clines)"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0079
+
+term:0079 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Historical Change in Physical Habitat"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0080
+
+term:0080 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "External Threats including Land-based Pollution"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0081
+
+term:0081 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Impacts of Invasive Species and Range Extensions"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0082
+
+term:0082 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Contributions from the Watershed"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0083
+
+term:0083 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Transportation via Water Currents"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0084
+
+term:0084 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Regional Fisheries Issues"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0085
+
+term:0085 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Marine Production and Biomass"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0086
+
+term:0086 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Persistent Oceanographic Features"@en ;
+          
+          skos:inScheme vocab:nims ;
+          
+          skos:relatedMatch term:0078 .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0087
+
+term:0087 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Areas Important for Spawning, Mating, Nurseries, etc."@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0088
+
+term:0088 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Migration and Dispersal Pathways"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0089
+
+term:0089 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Food Web Analyses"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0090
+
+term:0090 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Sources, Sinks, Dispersal for Larva and Juveniles"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0091
+
+term:0091 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Connectivity Among Distant Habitats and Assemblages"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0092
+
+term:0092 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Estuarine / Coastal Exchanges (e.g. Product, Nutrients, Pollution)"@en ;
+          
+          skos:inScheme vocab:nims ;
+          
+          skos:relatedMatch term:0064 .
+
+
+
+###  http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0100
+
+term:0100 rdf:type owl:NamedIndividual ,
+                   skos:Concept ;
+          
+          skos:prefLabel "Federally Listed Threatened and Endangered Species"@en ;
+          
+          skos:inScheme vocab:nims .
+
+
+
+
+###  Generated by the OWL API (version 3.2.5.1912) http://owlapi.sourceforge.net
+

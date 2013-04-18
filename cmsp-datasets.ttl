@@ -1,0 +1,970 @@
+@prefix : <http://escience.rpi.edu/rdf/cmspv/cmsp-datasets/> .
+@prefix cmsp: <http://escience.rpi.edu/rdf/cmspv/cmsp-data-categories/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Classes
+:Dataset a rdfs:Class .
+
+#Properties
+:owner a rdf:Property;
+	rdfs:domain :Dataset;
+	rdfs:range foaf:Organization .
+
+:contact a rdf:Property;
+	rdfs:domain :Dataset;
+	rdfs:range foaf:Person .
+
+:startDate a rdf:Property;
+	rdfs:domain :Dataset;
+	rdfs:range xsd:date .
+
+:endDate a rdf:Property;
+	rdfs:domain :Dataset;
+	rdfs:range xsd:date .
+
+:website a rdf:Property;
+	rdfs:domain :Dataset;
+	rdfs:range xsd:anyURI .
+
+# Organizations
+:org1 a foaf:Organization;
+	foaf:name "NOAA IOOS/NDBC" .
+
+:org2 a foaf:Organization;
+	foaf:name "Bureau of Ocean Energy Management (BOEM)" .
+
+:org3 a foaf:Organization;
+	foaf:name "NREL" .
+
+:org4 a foaf:Organization;
+	foaf:name "DOE" .
+
+:org5 a foaf:Organization;
+	foaf:name "NOAA IOOS" .
+
+:org6 a foaf:Organization;
+	foaf:name "NOAA IOOS/CO-OPS" .
+
+:org7 a foaf:Organization;
+	foaf:name "U.S. Geological Survey" .
+
+:org8 a foaf:Organization;
+	foaf:name "National Park Service" .
+
+:org9 a foaf:Organization;
+	foaf:name "EPA, Office of Water, Office of Science and Technology (EPA/OW/OST)" .
+
+:org10 a foaf:Organization;
+	foaf:name "EPA/ORD" .
+
+:org11 a foaf:Organization;
+	foaf:name "NOAA NMFS" .
+
+:org12 a foaf:Organization;
+	foaf:name "NOAA NMFS Office of Habitat Conservation" .
+
+:org13 a foaf:Organization;
+	foaf:name "NOAA SPO" .
+
+:org14 a foaf:Organization;
+	foaf:name "EPA, Office of Water, Office of Wetlands Oceans and Watersheds (EPA/OW/OWOW)" .
+
+:org15 a foaf:Organization;
+	foaf:name "EPA/GLNPO" .
+
+:org16 a foaf:Organization;
+	foaf:name "EPA/CB" .
+
+:org17 a foaf:Organization;
+	foaf:name "NOAA NGDC" .
+
+:org18 a foaf:Organization;
+	foaf:name "USACE" .
+
+:org19 a foaf:Organization;
+	foaf:name "NOAA/NESDIS/STAR Coral Reef Watch" .
+
+:org20 a foaf:Organization;
+	foaf:name "NGA Maritime Safety Office (SH)" .
+
+:org21 a foaf:Organization;
+	foaf:name "EPA, Office of Research and Development, Western Ecology Division (EPA/ORD/WED)" .
+
+:org22 a foaf:Organization;
+	foaf:name "EPA, Office of Water, Information Management Project Management Office (EPA/OW/IMPMO)" .
+
+:org23 a foaf:Organization;
+	foaf:name "NOAA CSC" .
+
+:org24 a foaf:Organization;
+	foaf:name "NOAA HAZMAT ERD" .
+
+:org25 a foaf:Organization;
+	foaf:name "NOAA MPA Center" .
+
+:org26 a foaf:Organization;
+	foaf:name "NOAA NCCOS" .
+
+:org27 a foaf:Organization;
+	foaf:name "NOAA National Marine Protected Areas Center" .
+
+:org28 a foaf:Organization;
+	foaf:name "NOAA OCS" .
+
+:org29 a foaf:Organization;
+	foaf:name "EPA, Office of Water, Oceans and Coastal Protection Division (EPA/OW/OCPD)" .
+
+:org30 a foaf:Organization;
+	foaf:name "USACE/IWR" .
+
+:org31 a foaf:Organization;
+	foaf:name "US Environmental Protection Agency, Office of Environmental Informaiton" .
+
+:org32 a foaf:Organization;
+	foaf:name "USACE/CHL" .
+
+# Persons
+:p1 a foaf:Person;
+	foaf:name "Donna Heimiller" .
+
+:p2 a foaf:Person;
+	foaf:name "Caitlin Frame" .
+
+:p3 a foaf:Person;
+	foaf:name "Clint Padgett" .
+
+# Datasets
+:ds1 a :Dataset;
+	dct:subject cmsp:t1Ai;
+	dct:title "Winds (NDBC stations)";
+	:owner :org1;
+	:startDate "2011-04-22"^^xsd:date;
+	:website "http://sdf.ndbc.noaa.gov/sos/"^^xsd:anyURI .
+
+:ds2 a :Dataset;
+	dct:subject cmsp:t1Ai;
+	dct:title "BOEM Wind Energy Areas in Atlantic Ocean";
+	:owner :org2;
+	:endDate "2011-12-31"^^xsd:date; # current to 2011
+	:website "http://marinecadastre.gov/"^^xsd:anyURI .
+
+:ds3 a :Dataset;
+	dct:subject cmsp:t1Ai;
+	dct:title "Nationwide (excluding AL, AK, FL, MS) offshore wind resource map";
+	:owner :org3;
+	:contact :p1;
+	:startDate "2010-06-01"^^xsd:date;
+	:website "http://www.windpoweringamerica.gov/windmaps/offshore.asp"^^xsd:anyURI .
+
+:ds4 a :Dataset;
+	dct:subject cmsp:t1Ai;
+	dct:title "NREL 90-meter Offshore Wind Resource Potential Tables";
+	:owner :org3;
+	:contact :p1;
+	:startDate "2010-06-01"^^xsd:date .
+
+:ds5 a :Dataset;
+	dct:subject cmsp:t1Aii;
+	dct:title "DOE tidal resource assessment";
+	:owner :org4;
+	:contact :p2;
+	:startDate "2011-08-01"^^xsd:date;
+	:website "http://www.tidalstreampower.gatech.edu/"^^xsd:anyURI .
+
+:ds6 a :Dataset;
+	dct:subject cmsp:t1Aiii;
+	dct:title "Surface Currents";
+	:owner :org5;
+	:startDate "2011-04-22"^^xsd:date;
+	:website "http://sdf.ndbc.noaa.gov/wcs/"^^xsd:anyURI .
+
+:ds7 a :Dataset;
+	dct:subject cmsp:t1Aiii;
+	dct:title "In situ currents (CO-OPS stations)";
+	:owner :org6;
+	:startDate "2011-04-22"^^xsd:date;
+	:website "http://opendap.co-ops.nos.noaa.gov/ioos-dif-sos-test/"^^xsd:anyURI .
+
+:ds8 a :Dataset;
+	dct:subject cmsp:t1Aiii;
+	dct:title "In situ currents (NDBC stations)";
+	:owner :org1;
+	:startDate "2011-04-22"^^xsd:date;
+	:website "http://sdf.ndbc.noaa.gov/sos/"^^xsd:anyURI .
+
+:ds9 a :Dataset;
+	dct:subject cmsp:t1Aiii;
+	dct:title "DOE ocean current resource assessment";
+	:owner :org4;
+	:contact :p2;
+	:startDate "2012-01-01"^^xsd:date .
+
+:ds10 a :Dataset;
+	dct:subject cmsp:t1Aiv;
+	dct:title "Geothermal Favorability and System Locations of the Western US";
+	:owner :org7;
+	:website "http://energy.usgs.gov/other/geothermal/"^^xsd:anyURI .
+
+:ds11 a :Dataset;
+	dct:subject cmsp:t1Av;
+	dct:title "DOE OTEC resource assessment";
+	:owner :org4;
+	:contact :p2;
+	:startDate "2012-01-01"^^xsd:date .
+
+:ds12 a :Dataset;
+	dct:subject cmsp:t1Avii;
+	dct:title "DOE wave energy resource assessment";
+	:owner :org4;
+	:contact :p2;
+	:startDate "2011-08-01"^^xsd:date .
+
+:ds13 a :Dataset;
+	dct:subject cmsp:t1Bi;
+	dct:title "USGS Map service: Historical Exploration and Production in the United States";
+	:owner :org7;
+	:website "http://pubs.usgs.gov/dds/dds-069/dds-069-q/text/startmap.htm"^^xsd:anyURI .
+
+:ds14 a :Dataset;
+	dct:subject cmsp:t1Biv;
+	dct:title "Active mines and mineral plants of the US";
+	:owner :org7;
+	:website "http://tin.er.usgs.gov/mineplant/"^^xsd:anyURI .
+
+:ds15 a :Dataset;
+	dct:subject cmsp:t1Biv;
+	dct:title "Map and table of world copper smelters";
+	:owner :org7;
+	:website "http://tin.er.usgs.gov/copper/"^^xsd:anyURI .
+
+:ds16 a :Dataset;
+	dct:subject cmsp:t1Biv;
+	dct:title "Mineral Resources Data System (MRDS)";
+	:owner :org7;
+	:website "http://tin.er.usgs.gov/mrds/"^^xsd:anyURI .
+
+:ds17 a :Dataset;
+	dct:subject cmsp:t2A, cmsp:t2B;
+	dct:title "IRMA NPSpecies Application";
+	:owner :org8;
+	:website "https://nrinfo.nps.gov/Biology.mvc/Welcome"^^xsd:anyURI .
+
+:ds18 a :Dataset;
+	dct:subject cmsp:t2Ai;
+	dct:title "National Listing of Fish and Wildlife Advisories (NLFWA) Database";
+	:owner :org9;
+	:startDate "1993-01-01"^^xsd:date;
+	:website "http://cfpub.epa.gov/si/si_public_record_Report.cfm?dirEntryID=23830"^^xsd:anyURI .
+
+:ds19 a :Dataset;
+	dct:subject cmsp:t2Bi, cmsp:t4C, cmsp:t5A, cmsp:t5E, cmsp:t5F;
+	dct:title "Environmental Monitoring and Assessment Program (EMAP), Regional Environmental Monitoring and Assessment Program (REMAP), and National Coastal Assessment (NCA) data";
+	:owner :org10, :org14;
+	:website "http://www.epa.gov/emap/nca/html/data/index.html"^^xsd:anyURI .
+
+:ds20 a :Dataset;
+	dct:subject cmsp:t2Bi, cmsp:t5A, cmsp:t5D, cmsp:t5E, cmsp:t5F;
+	dct:title "Pacific Coast Ecosystem Information System (PCEIS)";
+	:owner :org10;
+	:website "http://www.epa.gov/wed/pages/models.htm"^^xsd:anyURI .
+
+:ds21 a :Dataset;
+	dct:subject cmsp:t2C;
+	dct:title "NPS Endangered Species Act Database";
+	:owner :org8;
+	:website "https://nature.nps.gov/biology/endangeredspecies/speciesdatabase.cfm"^^xsd:anyURI .
+
+:ds22 a :Dataset;
+	dct:subject cmsp:t2C;
+	dct:title "Essential Fish Habitat";
+	:owner :org11;
+	:startDate "2011-05-10"^^xsd:date;
+	:website "http://sharpfin.nmfs.noaa.gov/website/EFH_Mapper/map.aspx"^^xsd:anyURI .
+
+:ds23 a :Dataset;
+	dct:subject cmsp:t2C;
+	dct:title "ESA Critical Habitat Maps";
+	:owner :org12;
+	:startDate "2011-05-10"^^xsd:date;
+	:website "http://www.nmfs.noaa.gov/pr/species/criticalhabitat.htm"^^xsd:anyURI .
+
+:ds24 a :Dataset;
+	dct:subject cmsp:t3A, cmsp:t3B, cmsp:t3D, cmsp:t3E;
+	dct:title "Shoreline length and water area in the ocean, coastal and Great Lakes parks: Updated statistics for shoreline miles and water acres";
+	:owner :org8;
+	:website "https://nrinfo.nps.gov"^^xsd:anyURI .
+
+:ds25 a :Dataset;
+	dct:subject cmsp:t3A, cmsp:t3B, cmsp:t3D, cmsp:t3E, cmsp:t9A;
+	dct:title "Administrative boundaries of ocean and Great Lakes parks";
+	:owner :org8;
+	:website "https://nrinfo.nps.gov"^^xsd:anyURI .
+
+:ds26 a :Dataset;
+	dct:subject cmsp:t3C;
+	dct:title "National Register of Historic Places";
+	:owner :org8;
+	:website "http://nrhp.focus.nps.gov/"^^xsd:anyURI .
+
+:ds27 a :Dataset;
+	dct:subject cmsp:t3E;
+	dct:title "Protected Areas Database of the United States (PADUS) _ Ownership of Public Lands";
+	:owner :org7;
+	:website "http://gapanalysis.usgs.gov/PADUS"^^xsd:anyURI .
+
+:ds28 a :Dataset;
+	dct:subject cmsp:t3E;
+	dct:title "Protected Areas Database of the United States (PADUS) - Conservation Status of Protected Lands";
+	:owner :org7;
+	:website "http://gapanalysis.usgs.gov/PADUS"^^xsd:anyURI .
+
+:ds29 a :Dataset;
+	dct:subject cmsp:t4A;
+	dct:title "Geologic maps- NPS Geologic Resource Inventory";
+	:owner :org8;
+	:website "http://www.nature.nps.gov/geology/inventory/index.cfm"^^xsd:anyURI .
+
+:ds30 a :Dataset;
+	dct:subject cmsp:t4A, cmsp:t5A;
+	dct:title "Benthic habitat maps of certain ocean and Great Lakes parks";
+	:owner :org8;
+	:website "https://nrinfo.nps.gov"^^xsd:anyURI .
+
+:ds31 a :Dataset;
+	dct:subject cmsp:t4A;
+	dct:title "1:80,000 Shoreline";
+	:owner :org13;
+	:startDate "2011-04-15"^^xsd:date;
+	:website "http://shoreline.noaa.gov/"^^xsd:anyURI .
+
+:ds32 a :Dataset;
+	dct:subject cmsp:t4A;
+	dct:title "NOAA Composite Shoreline 1:20,000";
+	:owner :org13;
+	:startDate "2011-03-15"^^xsd:date;
+	:website "http://shoreline.noaa.gov/"^^xsd:anyURI .
+
+:ds33 a :Dataset;
+	dct:subject cmsp:t4A;
+	dct:title "Sand and Gravel Borrow Areas in Gulf of Mexico";
+	:owner :org2;
+	:endDate "2011-12-31"^^xsd:date; # current to 2011
+	:website "http://marinecadastre.gov/"^^xsd:anyURI .
+
+:ds34 a :Dataset;
+	dct:subject cmsp:t4A, cmsp:t4C, cmsp:t5A, cmsp:t5E;
+	dct:title "STORET";
+	:owner :org14;
+	:startDate "1960-01-01"^^xsd:date;
+	:website "http://www.epa.gov/STORET/"^^xsd:anyURI .
+
+:ds35 a :Dataset;
+	dct:subject cmsp:t4A, cmsp:t4C, cmsp:t5A, cmsp:t5E, cmsp:t5G;
+	dct:title "The Great Lakes Environmental Database (GLENDA)";
+	:owner :org15;
+	:startDate "1993-01-01"^^xsd:date;
+	:website "http://www.epa.gov/glnpo/monitoring/data_proj/glenda/"^^xsd:anyURI .
+
+:ds36 a :Dataset;
+	dct:subject cmsp:t4A, cmsp:t4C, cmsp:t5A, cmsp:t5E, cmsp:t5G;
+	dct:title "The Chesapeake Information Management System (CIMS)";
+	:owner :org16, :org7;
+	:startDate "1996-01-01"^^xsd:date;
+	:website "www.chesapeakebay.net/data/index.htm"^^xsd:anyURI .
+
+:ds37 a :Dataset;
+	dct:subject cmsp:t4B;
+	dct:title "Estuarine Bathymetry (30 meter;3-arc second DEMs)";
+	:owner :org13;
+	:startDate "2011-05-10"^^xsd:date;
+	:website "http://estuarinebathymetry.noaa.gov/"^^xsd:anyURI .
+
+:ds38 a :Dataset;
+	dct:subject cmsp:t4B;
+	dct:title "Coastal DEMs (data extents; global to local community)";
+	:owner :org17;
+	:startDate "2011-05-10"^^xsd:date;
+	:website "http://ngdc.noaa.gov/mgg/coastal/coastal.html"^^xsd:anyURI .
+
+:ds39 a :Dataset;
+	dct:subject cmsp:t4B;
+	dct:title "U.S. Coastal Relief Model (color hillshade images; 3 to 24 arc-second)";
+	:owner :org17;
+	:startDate "2011-05-10"^^xsd:date;
+	:website "http://ngdc.noaa.gov/mgg/coastal/coastal.html"^^xsd:anyURI .
+
+:ds40 a :Dataset;
+	dct:subject cmsp:t4B;
+	dct:title "Coastal DEMs (color hillshade images; most 1 to 1/3 arc-second)";
+	:owner :org17;
+	:startDate "2011-05-10"^^xsd:date;
+	:website "http://ngdc.noaa.gov/mgg/coastal/coastal.html"^^xsd:anyURI .
+
+:ds41 a :Dataset;
+	dct:subject cmsp:t4B;
+	dct:title "ETOPO1 Global Relief Model (color hillshade image; 1 arc-minute)";
+	:owner :org17;
+	:startDate "2011-05-10"^^xsd:date;
+	:website "http://ngdc.noaa.gov/mgg/global/global.html"^^xsd:anyURI .
+
+:ds42 a :Dataset;
+	dct:subject cmsp:t4B;
+	dct:title "GEBCO_08 Global Gridded Bathymetry (color hillshade image; 30 arc-second)";
+	:owner :org17;
+	:startDate "2011-05-10"^^xsd:date;
+	:website "http://www.gebco.net/data_and_products/gridded_bathymetry_data/"^^xsd:anyURI .
+
+:ds43 a :Dataset;
+	dct:subject cmsp:t4B;
+	dct:title "Multibeam Bathymetry Surveys (data; global coverage)";
+	:owner :org17;
+	:startDate "2011-05-10"^^xsd:date;
+	:website "http://ngdc.noaa.gov/mgg/bathymetry/multibeam.html"^^xsd:anyURI .
+
+:ds44 a :Dataset;
+	dct:subject cmsp:t4B;
+	dct:title "Trackline Bathymetry Surveys (data; global coverage)";
+	:owner :org17;
+	:startDate "2011-05-10"^^xsd:date;
+	:website "http://ngdc.noaa.gov/mgg/geodas/trackline.html"^^xsd:anyURI .
+
+:ds45 a :Dataset;
+	dct:subject cmsp:t4B;
+	dct:title "NOS Hydrographic Surveys (data; U.S. coasts)";
+	:owner :org17;
+	:startDate "2011-05-10"^^xsd:date;
+	:website "http://ngdc.noaa.gov/mgg/bathymetry/hydro.html"^^xsd:anyURI .
+
+:ds46 a :Dataset;
+	dct:subject cmsp:t4B;
+	dct:title "National Coastal Mapping Program Past and Planned Coverage";
+	:owner :org18;
+	:contact :p3;
+	:startDate "2011-09-01"^^xsd:date; # Fall 2011
+	:website "https://shoals.sam.usace.army.mil/"^^xsd:anyURI .
+
+:ds47 a :Dataset;
+	dct:subject cmsp:t4B;
+	dct:title "National Coastal Mapping Program Derived Products";
+	:owner :org18;
+	:contact :p3;
+	:startDate "2011-09-01"^^xsd:date; # Fall 2011
+	:website "https://shoals.sam.usace.army.mil/"^^xsd:anyURI .
+
+:ds48 a :Dataset;
+	dct:subject cmsp:t4B;
+	dct:title "National Elevation Dataset (NED) - Small Scale Shaded Relief WMS";
+	:owner :org7;
+	:website "http://ned.usgs.gov/"^^xsd:anyURI .
+
+:ds49 a :Dataset;
+	dct:subject cmsp:t4B;
+	dct:title "National Elevation Dataset (NED) - Medium Scale Shaded Relief WMS";
+	:owner :org7;
+	:website "http://ned.usgs.gov/"^^xsd:anyURI .
+
+:ds50 a :Dataset;
+	dct:subject cmsp:t4B;
+	dct:title "National Elevation Dataset (NED) - Large Scale Shaded Relief WMS";
+	:owner :org7;
+	:website "http://ned.usgs.gov/"^^xsd:anyURI .
+
+:ds51 a :Dataset;
+	dct:subject cmsp:t4B;
+	dct:title "Contours - Small Scale";
+	:owner :org7;
+	.
+
+:ds52 a :Dataset;
+	dct:subject cmsp:t4C;
+	dct:title "Water Temperature (CO-OPS stations)";
+	:owner :org6;
+	:startDate "2011-04-22"^^xsd:date;
+	:website "http://opendap.co-ops.nos.noaa.gov/ioos-dif-sos-test/"^^xsd:anyURI .
+
+:ds53 a :Dataset;
+	dct:subject cmsp:t4C;
+	dct:title "Water Temperature (NDBC stations)";
+	:owner :org1;
+	:startDate "2011-04-22"^^xsd:date;
+	:website "http://sdf.ndbc.noaa.gov/sos/"^^xsd:anyURI .
+
+:ds54 a :Dataset;
+	dct:subject cmsp:t4C;
+	dct:title "Sea Surface Temperature (SST)";
+	:owner :org19;
+	:startDate "2011-04-25"^^xsd:date;
+	:website "http://coralreefwatch.noaa.gov/satellite/index.html"^^xsd:anyURI .
+
+:ds55 a :Dataset;
+	dct:subject cmsp:t4C;
+	dct:title "SST Anomaly";
+	:owner :org19;
+	:startDate "2011-04-25"^^xsd:date;
+	:website "http://coralreefwatch.noaa.gov/satellite/index.html"^^xsd:anyURI .
+
+:ds56 a :Dataset;
+	dct:subject cmsp:t4C;
+	dct:title "Geochemistry of water samples in the US from the NURE-HSSR database";
+	:owner :org7;
+	:website "http://tin.er.usgs.gov/nure/water/"^^xsd:anyURI .
+
+:ds57 a :Dataset;
+	dct:subject cmsp:t4C;
+	dct:title "Geochemistry of stream sediments in the US from the NURE-HSSR database";
+	:owner :org7;
+	:website "http://tin.er.usgs.gov/nure/sediment/"^^xsd:anyURI .
+
+:ds58 a :Dataset;
+	dct:subject cmsp:t4D;
+	dct:title "Water Level (CO-OPS stations)";
+	:owner :org6;
+	:startDate "2011-04-22"^^xsd:date;
+	:website "http://opendap.co-ops.nos.noaa.gov/ioos-dif-sos-test/"^^xsd:anyURI .
+
+:ds59 a :Dataset;
+	dct:subject cmsp:t4D;
+	dct:title "Water Level Predictions (CO-OPS stations)";
+	:owner :org6;
+	:startDate "2011-04-22"^^xsd:date;
+	:website "http://opendap.co-ops.nos.noaa.gov/ioos-dif-sos-test/"^^xsd:anyURI .
+
+:ds60 a :Dataset;
+	dct:subject cmsp:t4D;
+	dct:title "Waves (NDBC stations)";
+	:owner :org1;
+	:startDate "2011-04-22"^^xsd:date;
+	:website "http://sdf.ndbc.noaa.gov/sos/"^^xsd:anyURI .
+
+:ds61 a :Dataset;
+	dct:subject cmsp:t4F;
+	dct:title "Ocean Color - Aqua MODIS, US Northeast";
+	:owner :org5;
+	:startDate "2011-04-22"^^xsd:date;
+	:website "http://coastwatch.noaa.gov/thredds/catalog.html"^^xsd:anyURI .
+
+:ds62 a :Dataset;
+	dct:subject cmsp:t4F;
+	dct:title "Satellite Bleaching Alerts (Operational)";
+	:owner :org19;
+	:startDate "2011-04-25"^^xsd:date;
+	:website "http://coralreefwatch.noaa.gov/satellite/index.html"^^xsd:anyURI .
+
+:ds63 a :Dataset;
+	dct:subject cmsp:t5A, cmsp:t7A;
+	dct:title "Classification of Regional Patterns of Environmental Drivers and Benthic Habitats in Pacific Northwest Estuaries";
+	:owner :org21 .
+
+:ds64 a :Dataset;
+	dct:subject cmsp:t5A;
+	dct:title "USGS Ecosystems";
+	:owner :org7 .
+
+:ds65 a :Dataset;
+	dct:subject cmsp:t5B;
+	dct:title "Benthic Habitat Mapping";
+	:owner :org26;
+	:startDate "2011-04-25"^^xsd:date;
+	:website "http://ccma.nos.noaa.gov/about/biogeography/welcome.html"^^xsd:anyURI .
+
+:ds66 a :Dataset;
+	dct:subject cmsp:t5C;
+	dct:title "Classification of Regional Patterns of Environmental Drivers and Benthic Habitats in Pacific Northwest Estuaries";
+	:owner :org21;
+	:website "http://www.epa.gov/wed/pages/models.htm"^^xsd:anyURI .
+
+:ds67 a :Dataset;
+	dct:subject cmsp:t5D;
+	dct:title "The Coastal and Oceanic Plankton Ecology, Production, and Observation Database (COPEPOD)";
+	:owner :org11;
+	:startDate "2011-05-10"^^xsd:date;
+	:website "http://www.st.nmfs.noaa.gov/plankton/intro/index.html"^^xsd:anyURI .
+
+:ds68 a :Dataset;
+	dct:subject cmsp:t5G;
+	dct:title "Environmental Sensitivity Index";
+	:owner :org24;
+	:startDate "2011-05-10"^^xsd:date;
+	:website "http://response.restoration.noaa.gov"^^xsd:anyURI .
+
+:ds69 a :Dataset;
+	dct:subject cmsp:t5G;
+	dct:title "National Coastal Condition Report (NCCR) data";
+	:owner :org14, :org10;
+	:website "http://www.epa.gov/emap/nca/html/data/index.html"^^xsd:anyURI .
+
+:ds70 a :Dataset;
+	dct:subject cmsp:t5H;
+	dct:title "U.S. Atlantic East Coast Internet Map Server";
+	:owner :org7;
+	:website "http://coastalmap.marine.usgs.gov/ArcIms/Website/usa/eastcoast/atlanticcoast/"^^xsd:anyURI .
+
+:ds71 a :Dataset;
+	dct:subject cmsp:t5H;
+	dct:title "U.S. Pacific West Coast Internet Map Server";
+	:owner :org7;
+	:website "http://coastalmap.marine.usgs.gov/ArcIMS/Website/usa/westcoast/pacificcoast/"^^xsd:anyURI .
+
+:ds72 a :Dataset;
+	dct:subject cmsp:t5H;
+	dct:title "U.S. Gulf of Mexico Internet Map Server";
+	:owner :org7;
+	:website "http://coastalmap.marine.usgs.gov/ArcIms/Website/usa/gomex/gloria/"^^xsd:anyURI .
+
+:ds73 a :Dataset;
+	dct:subject cmsp:t5H;
+	dct:title "U.S. Southeast Atlantic Shoreline Change Internet Map Server";
+	:owner :org7;
+	:website "http://coastalmap.marine.usgs.gov/servlet/com.esri.esrimap.Esrimap?ServiceName=Atlse_shoreline_change"^^xsd:anyURI .
+
+:ds74 a :Dataset;
+	dct:subject cmsp:t5H;
+	dct:title "U.S. California Coast Shoreline Change Internet Map Server";
+	:owner :org7;
+	:website "http://coastalmap.marine.usgs.gov/servlet/com.esri.esrimap.Esrimap?ServiceName=CA_coast_shoreline_change"^^xsd:anyURI .
+
+:ds75 a :Dataset;
+	dct:subject cmsp:t5H;
+	dct:title "U.S. Gulf of Mexico Shoreline Change Internet Map Server";
+	:owner :org7;
+	:website "http://coastalmap.marine.usgs.gov/servlet/com.esri.esrimap.Esrimap?ServiceName=GoMex_shoreline_change"^^xsd:anyURI .
+
+:ds76 a :Dataset;
+	dct:subject cmsp:t6B;
+	dct:title "Large Aquatic Ecosysems (LAE) Council boundary shapefiles";
+	:owner :org29;
+	.
+
+:ds77 a :Dataset;
+	dct:subject cmsp:t6B;
+	dct:title "National Estuary Program (NEP) boundary shapefiles";
+	:owner :org29;
+	.
+
+:ds78 a :Dataset;
+	dct:subject cmsp:t6B;
+	dct:title "National Estuary Program (NEP) study areas shapefiles";
+	:owner :org29;
+	.
+
+:ds79 a :Dataset;
+	dct:subject cmsp:t7A;
+	dct:title "NPScape - Landscape Dynamics Monitoring";
+	:owner :org8;
+	:website "http://science.nature.nps.gov/im/monitor/npscape/"^^xsd:anyURI .
+
+:ds80 a :Dataset;
+	dct:subject cmsp:t7A, cmsp:t9E;
+	dct:title "Water Quality Assessment and Total Maximum Daily Loads Information The ATTAINS database";
+	:owner :org14;
+	:website "http://www.epa.gov/waters/ir/index.html"^^xsd:anyURI .
+
+:ds81 a :Dataset;
+	dct:subject cmsp:t7A;
+	dct:title "Watershed Assessment, Tracking & Environmental ResultS (WATERS)";
+	:owner :org22;
+	:website "http://www.epa.gov/waters/"^^xsd:anyURI .
+
+:ds82 a :Dataset;
+	dct:subject cmsp:t7A;
+	dct:title "eBEACHES";
+	:owner :org9;
+	:website "http://water.epa.gov/grants_funding/beachgrants/ebeachesfs.cfm"^^xsd:anyURI .
+
+:ds83 a :Dataset;
+	dct:subject cmsp:t7A;
+	dct:title "USEPA Facility Registry System";
+	:owner :org31;
+	:startDate "1999-01-01"^^xsd:date;
+	:website "http://www.epa.gov/enviro/html/fii/index.html"^^xsd:anyURI .
+
+:ds84 a :Dataset;
+	dct:subject cmsp:t7C;
+	dct:title "USGS Streamflow Stations";
+	:owner :org7 .
+
+:ds85 a :Dataset;
+	dct:subject cmsp:t7C;
+	dct:title "The National Map - National Hydrography Dataset (NHD)";
+	:owner :org7;
+	:website "http://nhd.usgs.gov/index.html"^^xsd:anyURI .
+
+:ds86 a :Dataset;
+	dct:subject cmsp:t8Ai, cmsp:t8Aii, cmsp:t8Aiii;
+	dct:title "California Ocean Use Data";
+	:owner :org25;
+	:startDate "2011-04-27"^^xsd:date;
+	:website "http://www.mpa.gov/dataanalysis/atlas_ca/"^^xsd:anyURI .
+
+:ds87 a :Dataset;
+	dct:subject cmsp:t8Ai, cmsp:t8Aii, cmsp:t8Aiii;
+	dct:title "New Hampshire/Southern Maine Ocean Uses Data";
+	:owner :org25;
+	:startDate "2011-06-01"^^xsd:date;
+	:website "http://www.mpa.gov/dataanalysis/atlas_nhsm/"^^xsd:anyURI .
+
+:ds88 a :Dataset;
+	dct:subject cmsp:t8Ai, cmsp:t8Aii, cmsp:t8Aiii;
+	dct:title "Hawaii Coastal Use Mapping Data";
+	:owner :org25;
+	:startDate "2011-04-27"^^xsd:date;
+	:website "http://www.mpa.gov/dataanalysis/hi_coastal_use/"^^xsd:anyURI .
+
+:ds89 a :Dataset;
+	dct:subject cmsp:t8Aiii;
+	dct:title "USACE Disposal Areas";
+	:owner :org18;
+	:contact :p3;
+	:website ""^^xsd:anyURI .
+
+:ds90 a :Dataset;
+	dct:subject cmsp:t8Aiii;
+	dct:title "USACE Dredging Project Areas";
+	:owner :org18;
+	:contact :p3;
+	:website ""^^xsd:anyURI .
+
+:ds91 a :Dataset;
+	dct:subject cmsp:t8B;
+	dct:title "Money Generation Model2: Economic Benefits from National Park Visitation";
+	:owner :org8;
+	:website "http://35.8.125.11/mgm2_new/"^^xsd:anyURI .
+
+:ds92 a :Dataset;
+	dct:subject cmsp:t9A;
+	dct:title "MPA Boundaries";
+	:owner :org25;
+	:startDate "2011-04-27"^^xsd:date;
+	:website "http://www.mpa.gov/dataanalysis/mpainventory/"^^xsd:anyURI .
+
+:ds93 a :Dataset;
+	dct:subject cmsp:t9A;
+	dct:title "No-Discharge Zones (NDZs) for Vessel Sewage";
+	:owner :org14;
+	:website "http://water.epa.gov/polwaste/vwd/vsdnozone.cfm"^^xsd:anyURI .
+
+:ds94 a :Dataset;
+	dct:subject cmsp:t9A;
+	dct:title "Ocean Dredged Material Dumpsite Monitoring";
+	:owner :org14;
+	:website "http://water.epa.gov/type/oceb/oceandumping/dredgedmaterial/sitemonitor.cfm"^^xsd:anyURI .
+
+:ds95 a :Dataset;
+	dct:subject cmsp:t9A;
+	dct:title "List of units of the National Park System with submerged and intertidal resources";
+	:owner :org25;
+	:website "http://www.mpa.gov/dataanalysis/mpainventory/"^^xsd:anyURI .
+
+:ds96 a :Dataset;
+	dct:subject cmsp:t9B;
+	dct:title "Active Oil and Gas Leases - Gulf of Mexico, Pacific, Alaska";
+	:owner :org2; # Energy
+	:endDate "2011-12-31"^^xsd:date; # current to 2011
+	:website "http://www.boemre.gov/offshore/mapping/"^^xsd:anyURI .
+
+:ds97 a :Dataset;
+	dct:subject cmsp:t9C;
+	dct:title "Maritime Boundaries";
+	:owner :org28;
+	:startDate "2011-04-01"^^xsd:date;
+	:website ""^^xsd:anyURI .
+
+:ds98 a :Dataset;
+	dct:subject cmsp:t9C;
+	dct:title "Marine Jurisdictions";
+	:owner :org23;
+	:startDate "2011-04-27"^^xsd:date;
+	:website "http://www.marinecadastre.gov/data/Data%20Pages/databundles.aspx"^^xsd:anyURI .
+
+:ds99 a :Dataset;
+	dct:subject cmsp:t9C;
+	dct:title "Collarless Raster Nautical Charts (RNCs)";
+	:owner :org13, :org28;
+	:startDate "2011-03-15"^^xsd:date;
+	:website "http://www.nauticalcharts.noaa.gov/mcd/Raster/"^^xsd:anyURI .
+
+:ds100 a :Dataset;
+	dct:subject cmsp:t9C;
+	dct:title "Shipping Lanes / Authorized Channels & Actual Routes Used";
+	:owner :org28;
+	:startDate "2011-04-25"^^xsd:date;
+	:website "http://ocs-spatial.ncd.noaa.gov/encdirect/viewer.htm"^^xsd:anyURI .
+
+:ds101 a :Dataset;
+	dct:subject cmsp:t9C;
+	dct:title "Baseline for CONUS and parts of AK";
+	:owner :org2;
+	:website "http://www.boemre.gov/offshore/mapping/"^^xsd:anyURI .
+
+:ds102 a :Dataset;
+	dct:subject cmsp:t9C;
+	dct:title "Submerged Lands Act Boundary";
+	:owner :org2;
+	:endDate "2011-12-31"^^xsd:date; # current to 2011
+	:website "http://www.boemre.gov/offshore/mapping/"^^xsd:anyURI .
+
+:ds103 a :Dataset;
+	dct:subject cmsp:t9C;
+	dct:title "Limit of 8(g) Revenue Sharing Boundary for CONUS and parts of AK";
+	:owner :org2;
+	:website "http://www.boemre.gov/offshore/mapping/"^^xsd:anyURI .
+
+:ds104 a :Dataset;
+	dct:subject cmsp:t9C;
+	dct:title "Continental Shelf Boundary for CONUS and parts of AK";
+	:owner :org2;
+	:website "http://www.boemre.gov/offshore/mapping/"^^xsd:anyURI .
+
+:ds105 a :Dataset;
+	dct:subject cmsp:t9C;
+	dct:title "Official Protraction Diagrams for CONUS and parts of AK";
+	:owner :org2;
+	:website "http://www.boemre.gov/offshore/mapping/"^^xsd:anyURI .
+
+:ds106 a :Dataset;
+	dct:subject cmsp:t9C;
+	dct:title "Outer Continental Shelf Lease Blocks for CONUS and parts of AK";
+	:owner :org2;
+	:website "http://www.boemre.gov/offshore/mapping/"^^xsd:anyURI .
+
+:ds107 a :Dataset;
+	dct:subject cmsp:t9C;
+	dct:title "BOEM Administrative Boundaries for CONUS only";
+	:owner :org2;
+	:endDate "2011-12-31"^^xsd:date; # current to 2011
+	:website "http://www.boemre.gov/offshore/mapping/"^^xsd:anyURI .
+
+:ds108 a :Dataset;
+	dct:subject cmsp:t9C;
+	dct:title "BOEM Planning Areas for CONUS and Alaska only";
+	:owner :org2;
+	:endDate "2011-12-31"^^xsd:date; # current to 2011
+	:website "http://www.boemre.gov/offshore/mapping/"^^xsd:anyURI .
+
+:ds109 a :Dataset;
+	dct:subject cmsp:t9C;
+	dct:title "The National Map - Governmental Unit Boundaries WMS";
+	:owner :org7;
+	:website "http://nationalmap.gov/boundaries.html"^^xsd:anyURI .
+
+:ds110 a :Dataset;
+	dct:subject cmsp:t10A;
+	dct:title "Anchorages; Port facilities";
+	:owner :org28;
+	:startDate "2011-04-25"^^xsd:date;
+	:website "http://ocs-spatial.ncd.noaa.gov/encdirect/viewer.htm"^^xsd:anyURI .
+
+:ds111 a :Dataset;
+	dct:subject cmsp:t10A;
+	dct:title "IWR Port & Waterway Facilities";
+	:owner :org30;
+	:website "http://www.ndc.iwr.usace.army.mil/"^^xsd:anyURI .
+
+:ds112 a :Dataset;
+	dct:subject cmsp:t10A, cmsp:t10B, cmsp:t10C;
+	dct:title "US Notice to Mariners";
+	:owner :org20 .
+
+:ds113 a :Dataset;
+	dct:subject cmsp:t10B;
+	dct:title "Submerged man-made objects (marine landfills, old transmission lines, artificial reefs);  Navigation aids; oil and gas pipeline/fiber optic cables; Pipelines and cables";
+	:owner :org28;
+	:startDate "2011-04-25"^^xsd:date;
+	:website "http://ocs-spatial.ncd.noaa.gov/encdirect/viewer.htm"^^xsd:anyURI .
+
+:ds114 a :Dataset;
+	dct:subject cmsp:t10B;
+	dct:title "Oil and Gas Pipelines in Gulf of Mexico, Pacific";
+	:owner :org2; # Energy
+	:endDate "2011-12-31"^^xsd:date; # current to 2011
+	:website "http://www.boemre.gov/offshore/mapping/" .
+
+:ds115 a :Dataset;
+	dct:subject cmsp:t10D;
+	dct:title "Oil and Gas Wells in Gulf of Mexico, Pacific";
+	:owner :org2; # Energy
+	:endDate "2011-12-31"^^xsd:date; # current to 2011
+	:website "http://www.boemre.gov/offshore/mapping/" .
+
+:ds116 a :Dataset;
+	dct:subject cmsp:t10D;
+	dct:title "Drilling Platforms in Gulf of Mexico, Pacific";
+	:owner :org2; # Energy
+	:endDate "2011-12-31"^^xsd:date; # current to 2011
+	:website "http://www.boemre.gov/offshore/mapping/" .
+
+:ds117 a :Dataset;
+	dct:subject cmsp:t10D;
+	dct:title "USACE Coastal Structures";
+	:owner :org32;
+	:startDate "2011-09-01"^^xsd:date . # Fall 2011
+
+:ds118 a :Dataset;
+	dct:subject cmsp:t10D;
+	dct:title "USACE National Channel Framework";
+	:owner :org32 .
+
+:ds119 a :Dataset;
+	dct:subject cmsp:t10D;
+	dct:title "NGA Mobile Offshore Drilling Unit (MODU) Database - MODUs location and information";
+	:owner :org20 .
+
+:ds120 a :Dataset;
+	dct:subject cmsp:t10D;
+	dct:title "NGA Non-Submarine Contact List - Wrecks and Underwater Obstructions";
+	:owner :org20 .
+
+:ds121 a :Dataset;
+	dct:subject cmsp:t10D;
+	dct:title "NGA WWNWS Broadcast Warnings - NAVAREA IV, NAVAREA XII, HYDROLANT and HYDROPAC Broadcast Warnings";
+	:owner :org20 .
+
+:ds122 a :Dataset;
+	dct:subject cmsp:t4Bi;
+	dct:title "The National Map Gazetteer - Geographic Names Information System (GNIS) WMS";
+	:owner :org7;
+	:website "http://geonames.usgs.gov/index.html" .
+
+:ds123 a :Dataset;
+	dct:subject cmsp:t4Bii;
+	dct:title "The National Map - National Land Cover Database (NLCD) WMS";
+	:owner :org7 .
+
+:ds124 a :Dataset;
+	dct:subject cmsp:t4Biii;
+	dct:title "US Topo Maps";
+	:owner :org7;
+	:website "http://store.usgs.gov" .
+
+:ds125 a :Dataset;
+	dct:subject cmsp:t4Biv;
+	dct:title "Imagery - Small Scale";
+	:owner :org7 .
+
+:ds126 a :Dataset;
+	dct:subject cmsp:t4Biv;
+	dct:title "Imagery - Large Scale";
+	:owner :org7 .
+
+:ds127 a :Dataset;
+	dct:subject cmsp:t4Bii;
+	dct:title "USGS GAP Land Cover";
+	:owner :org7;
+	:website "http://gapanalysis.usgs.gov/" .
+
+:ds128 a :Dataset;
+	dct:subject cmsp:t4Bv;
+	dct:title "Scanned Topo Maps";
+	:owner :org7;
+	:website "http://store.usgs.gov" .
+
+:ds129 a :Dataset;
+	dct:subject cmsp:t4Bii;
+	dct:title "Land Cover (NLCD) 2006";
+	:owner :org7 .
+

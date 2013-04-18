@@ -1,0 +1,861 @@
+@prefix : <http://escience.rpi.edu/rdf/cmspv/cmsp-data-categories/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+:Theme a rdfs:Class;
+    rdfs:label "Theme"@en;
+    rdfs:comment "Theme used to organize datasets."@en .
+
+:t10A a :Theme,
+        skos:Concept;
+    rdfs:label "Ports"@en;
+    skos:broader :t10;
+    skos:inScheme :themes;
+    skos:notation "10A";
+    skos:prefLabel "Ports"@en .
+
+:t10B a :Theme,
+        skos:Concept;
+    rdfs:label "Cables, pipelines, power grid"@en;
+    skos:broader :t10;
+    skos:inScheme :themes;
+    skos:notation "10B";
+    skos:prefLabel "Cables, pipelines, power grid"@en .
+
+:t10C a :Theme,
+        skos:Concept;
+    rdfs:label "Buoys"@en;
+    skos:broader :t10;
+    skos:inScheme :themes;
+    skos:notation "10C";
+    skos:prefLabel "Buoys"@en .
+
+:t10D a :Theme,
+        skos:Concept;
+    rdfs:label "Structures (e.g. met. towers, oil and gas platforms)"@en;
+    skos:broader :t10;
+    skos:inScheme :themes;
+    skos:notation "10D";
+    skos:prefLabel "Structures (e.g. met. towers, oil and gas platforms)"@en .
+
+:t1Ai a :Theme,
+        skos:Concept;
+    rdfs:label "Wind"@en;
+    skos:broader :t1A;
+    skos:inScheme :themes;
+    skos:notation "1Ai";
+    skos:prefLabel "Wind"@en .
+
+:t1Aii a :Theme,
+        skos:Concept;
+    rdfs:label "Tidal"@en;
+    skos:broader :t1A;
+    skos:inScheme :themes;
+    skos:notation "1Aii";
+    skos:prefLabel "Tidal"@en .
+
+:t1Aiii a :Theme,
+        skos:Concept;
+    rdfs:label "Currents"@en;
+    skos:broader :t1A;
+    skos:inScheme :themes;
+    skos:notation "1Aiii";
+    skos:prefLabel "Currents"@en .
+
+:t1Aiv a :Theme,
+        skos:Concept;
+    rdfs:label "Geothermal"@en;
+    skos:broader :t1A;
+    skos:inScheme :themes;
+    skos:notation "1Aiv";
+    skos:prefLabel "Geothermal"@en .
+
+:t1Av a :Theme,
+        skos:Concept;
+    rdfs:label "Temperature gradients and OTEC"@en;
+    skos:broader :t1A;
+    skos:inScheme :themes;
+    skos:notation "1Av";
+    skos:prefLabel "Temperature gradients and OTEC"@en .
+
+:t1Avi a :Theme,
+        skos:Concept;
+    rdfs:label "Solar"@en;
+    skos:broader :t1A;
+    skos:inScheme :themes;
+    skos:notation "1Avi";
+    skos:prefLabel "Solar"@en .
+
+:t1Avii a :Theme,
+        skos:Concept;
+    rdfs:label "Wave"@en;
+    skos:broader :t1A;
+    skos:inScheme :themes;
+    skos:notation "1Avii";
+    skos:prefLabel "Wave"@en .
+
+:t1Bi a :Theme,
+        skos:Concept;
+    rdfs:label "Oil and gas"@en;
+    skos:broader :t1B;
+    skos:inScheme :themes;
+    skos:notation "1Bi";
+    skos:prefLabel "Oil and gas"@en .
+
+:t1Bii a :Theme,
+        skos:Concept;
+    rdfs:label "Gas Hydrates"@en;
+    skos:broader :t1B;
+    skos:inScheme :themes;
+    skos:notation "1Bii";
+    skos:prefLabel "Gas Hydrates"@en .
+
+:t1Biii a :Theme,
+        skos:Concept;
+    rdfs:label "Sand"@en;
+    skos:broader :t1B;
+    skos:inScheme :themes;
+    skos:notation "1Biii";
+    skos:prefLabel "Sand"@en .
+
+:t1Biv a :Theme,
+        skos:Concept;
+    rdfs:label "Minerals"@en;
+    skos:broader :t1B;
+    skos:inScheme :themes;
+    skos:notation "1Biv";
+    skos:prefLabel "Minerals"@en .
+
+:t2Ai a :Theme,
+        skos:Concept;
+    rdfs:label "Fish"@en;
+    skos:broader :t2A;
+    skos:inScheme :themes;
+    skos:notation "2Ai";
+    skos:prefLabel "Fish"@en .
+
+:t2Aii a :Theme,
+        skos:Concept;
+    rdfs:label "Shellfish"@en;
+    skos:broader :t2A;
+    skos:inScheme :themes;
+    skos:notation "2Aii";
+    skos:prefLabel "Shellfish"@en .
+
+:t2Aiii a :Theme,
+        skos:Concept;
+    rdfs:label "Algae"@en;
+    skos:broader :t2A;
+    skos:inScheme :themes;
+    skos:notation "2Aiii";
+    skos:prefLabel "Algae"@en .
+
+:t2Aiv a :Theme,
+        skos:Concept;
+    rdfs:label "Marine Mammals"@en;
+    skos:broader :t2A;
+    skos:inScheme :themes;
+    skos:notation "2Aiv";
+    skos:prefLabel "Marine Mammals"@en .
+
+:t2Av a :Theme,
+        skos:Concept;
+    rdfs:label "Birds"@en;
+    skos:broader :t2A;
+    skos:inScheme :themes;
+    skos:notation "2Av";
+    skos:prefLabel "Birds"@en .
+
+:t2Avi a :Theme,
+        skos:Concept;
+    rdfs:label "Other invertebrates"@en;
+    skos:broader :t2A;
+    skos:inScheme :themes;
+    skos:notation "2Avi";
+    skos:prefLabel "Other invertebrates"@en .
+
+:t2Bi a :Theme,
+        skos:Concept;
+    rdfs:label "Marine Mammals and reptiles"@en;
+    skos:broader :t2B;
+    skos:inScheme :themes;
+    skos:notation "2Bi";
+    skos:prefLabel "Marine Mammals and reptiles"@en .
+
+:t2Bii a :Theme,
+        skos:Concept;
+    rdfs:label "Fish"@en;
+    skos:broader :t2B;
+    skos:inScheme :themes;
+    skos:notation "2Bii";
+    skos:prefLabel "Fish"@en .
+
+:t2Biii a :Theme,
+        skos:Concept;
+    rdfs:label "Sea Birds"@en;
+    skos:broader :t2B;
+    skos:inScheme :themes;
+    skos:notation "2ABiii";
+    skos:prefLabel "Sea Birds"@en .
+
+:t2Biv a :Theme,
+        skos:Concept;
+    rdfs:label "Invertebrates"@en;
+    skos:broader :t2B;
+    skos:inScheme :themes;
+    skos:notation "2Biv";
+    skos:prefLabel "Invertebrates"@en .
+
+:t2Bv a :Theme,
+        skos:Concept;
+    rdfs:label "Algae"@en;
+    skos:broader :t2B;
+    skos:inScheme :themes;
+    skos:notation "2Bv";
+    skos:prefLabel "Algae"@en .
+
+:t2Ci a :Theme,
+        skos:Concept;
+    rdfs:label "Federally listed"@en;
+    skos:broader :t2C;
+    skos:inScheme :themes;
+    skos:notation "2Ci";
+    skos:prefLabel "Federally listed"@en .
+
+:t2Cii a :Theme,
+        skos:Concept;
+    rdfs:label "State listed"@en;
+    skos:broader :t2C;
+    skos:inScheme :themes;
+    skos:notation "2Cii";
+    skos:prefLabel "State listed"@en .
+
+:t2Ciii a :Theme,
+        skos:Concept;
+    rdfs:label "Internationally listed"@en;
+    skos:broader :t2C;
+    skos:inScheme :themes;
+    skos:notation "2Ciii";
+    skos:prefLabel "Internationally listed"@en .
+
+:t3A a :Theme,
+        skos:Concept;
+    rdfs:label "Locations of artifacts reflecting US maritime history"@en;
+    skos:broader :t3;
+    skos:inScheme :themes;
+    skos:notation "3A";
+    skos:prefLabel "Locations of artifacts reflecting US maritime history"@en .
+
+:t3B a :Theme,
+        skos:Concept;
+    rdfs:label "Areas + resources of cultural signif. to native peoples"@en;
+    skos:broader :t3;
+    skos:inScheme :themes;
+    skos:notation "3B";
+    skos:prefLabel "Areas + resources of cultural signif. to native peoples"@en .
+
+:t3C a :Theme,
+        skos:Concept;
+    rdfs:label "Historically significant properties"@en;
+    skos:broader :t3;
+    skos:inScheme :themes;
+    skos:notation "3C";
+    skos:prefLabel "Historically significant properties"@en .
+
+:t3D a :Theme,
+        skos:Concept;
+    rdfs:label "Important view-sheds"@en;
+    skos:broader :t3;
+    skos:inScheme :themes;
+    skos:notation "3D";
+    skos:prefLabel "Important view-sheds"@en .
+
+:t3E a :Theme,
+        skos:Concept;
+    rdfs:label "Protected areas"@en;
+    skos:broader :t3;
+    skos:inScheme :themes;
+    skos:notation "3E";
+    skos:prefLabel "Protected areas"@en .
+
+:t4A a :Theme,
+        skos:Concept;
+    rdfs:label "Physical habitats + geomorphology"@en;
+    skos:broader :t4;
+    skos:inScheme :themes;
+    skos:notation "4A";
+    skos:prefLabel "Physical habitats + geomorphology"@en .
+
+:t4B a :Theme,
+        skos:Concept;
+    rdfs:label "Bathymetry and elevation"@en;
+    skos:broader :t4;
+    skos:inScheme :themes;
+    skos:notation "4B";
+    skos:prefLabel "Bathymetry and elevation"@en .
+
+:t4Bi a :Theme,
+        skos:Concept;
+    rdfs:label "Geographic Names"@en;
+    skos:broader :t4B;
+    skos:inScheme :themes;
+    skos:notation "4Bi";
+    skos:prefLabel "Geographic Names"@en .
+
+:t4Bii a :Theme,
+        skos:Concept;
+    rdfs:label "Land Cover"@en;
+    skos:broader :t4B;
+    skos:inScheme :themes;
+    skos:notation "4Bii";
+    skos:prefLabel "Land Cover"@en .
+
+:t4Biii a :Theme,
+        skos:Concept;
+    rdfs:label "US_Topo (MapServer)"@en;
+    skos:broader :t4B;
+    skos:inScheme :themes;
+    skos:notation "4Biii";
+    skos:prefLabel "US_Topo (MapServer)"@en .
+
+:t4Biv a :Theme,
+        skos:Concept;
+    rdfs:label "Imagery"@en;
+    skos:broader :t4B;
+    skos:inScheme :themes;
+    skos:notation "4Biv";
+    skos:prefLabel "Imagery"@en .
+
+:t4Bv a :Theme,
+        skos:Concept;
+    rdfs:label "Historical"@en;
+    skos:broader :t4B;
+    skos:inScheme :themes;
+    skos:notation "4Bv";
+    skos:prefLabel "Historical"@en .
+
+:t4C a :Theme,
+        skos:Concept;
+    rdfs:label "Temperature, salinity, pH"@en;
+    skos:broader :t4;
+    skos:inScheme :themes;
+    skos:notation "4C";
+    skos:prefLabel "Temperature, salinity, pH"@en .
+
+:t4D a :Theme,
+        skos:Concept;
+    rdfs:label "Wave + water level climatology; incl. SLR rates"@en;
+    skos:broader :t4;
+    skos:inScheme :themes;
+    skos:notation "4D";
+    skos:prefLabel "Wave + water level climatology; incl. SLR rates"@en .
+
+:t4E a :Theme,
+        skos:Concept;
+    rdfs:label "Substrate maps"@en;
+    skos:broader :t4;
+    skos:inScheme :themes;
+    skos:notation "4E";
+    skos:prefLabel "Substrate maps"@en .
+
+:t4F a :Theme,
+        skos:Concept;
+    rdfs:label "Water column features"@en;
+    skos:broader :t4;
+    skos:inScheme :themes;
+    skos:notation "4F";
+    skos:prefLabel "Water column features"@en .
+
+:t4Gi a :Theme,
+        skos:Concept;
+    rdfs:label "Effects of major currents"@en;
+    skos:broader :t4G;
+    skos:inScheme :themes;
+    skos:notation "4Gi";
+    skos:prefLabel "Effects of major currents"@en .
+
+:t4Gii a :Theme,
+        skos:Concept;
+    rdfs:label "Connectivity, linkages, and zones of separation"@en;
+    skos:broader :t4G;
+    skos:inScheme :themes;
+    skos:notation "4Gii";
+    skos:prefLabel "Connectivity, linkages, and zones of separation"@en .
+
+:t4Giii a :Theme,
+        skos:Concept;
+    rdfs:label "Effects of persistent oceanog. features (e.g. clines)"@en;
+    skos:broader :t4G;
+    skos:inScheme :themes;
+    skos:notation "4Giii";
+    skos:prefLabel "Effects of persistent oceanog. features (e.g. clines)"@en .
+
+:t4Giv a :Theme,
+        skos:Concept;
+    rdfs:label "Historic change in physical habitat"@en;
+    skos:broader :t4G;
+    skos:inScheme :themes;
+    skos:notation "4Giv";
+    skos:prefLabel "Historic change in physical habitat"@en .
+
+:t5A a :Theme,
+        skos:Concept;
+    rdfs:label "Biotic habitat distributions"@en;
+    skos:broader :t5;
+    skos:inScheme :themes;
+    skos:notation "5A";
+    skos:prefLabel "Biotic habitat distributions"@en .
+
+:t5B a :Theme,
+        skos:Concept;
+    rdfs:label "Habitat characterizations w/ std schemes"@en;
+    skos:broader :t5;
+    skos:inScheme :themes;
+    skos:notation "5B";
+    skos:prefLabel "Habitat characterizations w/ std schemes"@en .
+
+:t5C a :Theme,
+        skos:Concept;
+    rdfs:label "Biogenic habitats"@en;
+    skos:broader :t5;
+    skos:inScheme :themes;
+    skos:notation "5C";
+    skos:prefLabel "Biogenic habitats"@en .
+
+:t5D a :Theme,
+        skos:Concept;
+    rdfs:label "Biogeo. maps w/ distrib. and abun. of relevant species"@en;
+    skos:broader :t5;
+    skos:inScheme :themes;
+    skos:notation "5D";
+    skos:prefLabel "Biogeo. maps w/ distrib. and abun. of relevant species"@en .
+
+:t5E a :Theme,
+        skos:Concept;
+    rdfs:label "Areas of high biodiversity"@en;
+    skos:broader :t5;
+    skos:inScheme :themes;
+    skos:notation "5E";
+    skos:prefLabel "Areas of high biodiversity"@en .
+
+:t5F a :Theme,
+        skos:Concept;
+    rdfs:label "Areas with unique or rare species or communities"@en;
+    skos:broader :t5;
+    skos:inScheme :themes;
+    skos:notation "5F";
+    skos:prefLabel "Areas with unique or rare species or communities"@en .
+
+:t5G a :Theme,
+        skos:Concept;
+    rdfs:label "Ecological indices applicable on a national scale"@en;
+    skos:broader :t5;
+    skos:inScheme :themes;
+    skos:notation "5G";
+    skos:prefLabel "Ecological indices applicable on a national scale"@en .
+
+:t6A a :Theme,
+        skos:Concept;
+    rdfs:label "Marine production and biomass"@en;
+    skos:broader :t6;
+    skos:inScheme :themes;
+    skos:notation "6A";
+    skos:prefLabel "Marine production and biomass"@en .
+
+:t6B a :Theme,
+        skos:Concept;
+    rdfs:label "Persistent oceanographic features"@en;
+    skos:broader :t6;
+    skos:inScheme :themes;
+    skos:notation "6B";
+    skos:prefLabel "Persistent oceanographic features"@en .
+
+:t6C a :Theme,
+        skos:Concept;
+    rdfs:label "Areas important for spawning, mating, nurseries, etc."@en;
+    skos:broader :t6;
+    skos:inScheme :themes;
+    skos:notation "6C";
+    skos:prefLabel "Areas important for spawning, mating, nurseries, etc."@en .
+
+:t6D a :Theme,
+        skos:Concept;
+    rdfs:label "Migration and dispersal pathways"@en;
+    skos:broader :t6;
+    skos:inScheme :themes;
+    skos:notation "6D";
+    skos:prefLabel "Migration and dispersal pathways"@en .
+
+:t6E a :Theme,
+        skos:Concept;
+    rdfs:label "Food web analyses"@en;
+    skos:broader :t6;
+    skos:inScheme :themes;
+    skos:notation "6E";
+    skos:prefLabel "Food web analyses"@en .
+
+:t6F a :Theme,
+        skos:Concept;
+    rdfs:label "Sources, sinks, dispersal for larvae and juveniles"@en;
+    skos:broader :t6;
+    skos:inScheme :themes;
+    skos:notation "6F";
+    skos:prefLabel "Sources, sinks, dispersal for larvae and juveniles"@en .
+
+:t6G a :Theme,
+        skos:Concept;
+    rdfs:label "Connectivity among distant habitats and assemblages"@en;
+    skos:broader :t6;
+    skos:inScheme :themes;
+    skos:notation "6G";
+    skos:prefLabel "Connectivity among distant habitats and assemblages"@en .
+
+:t6H a :Theme,
+        skos:Concept;
+    rdfs:label "Estuarine/coastal exchange (e.g. product, nutr., poll'n)"@en;
+    skos:broader :t6;
+    skos:inScheme :themes;
+    skos:notation "6H";
+    skos:prefLabel "Estuarine/coastal exchange (e.g. product, nutr., poll'n)"@en .
+
+:t7A a :Theme,
+        skos:Concept;
+    rdfs:label "External threats including land-based pollution"@en;
+    skos:broader :t7;
+    skos:inScheme :themes;
+    skos:notation "7A";
+    skos:prefLabel "External threats including land-based pollution"@en .
+
+:t7B a :Theme,
+        skos:Concept;
+    rdfs:label "Impacts of invasive species and range extensions"@en;
+    skos:broader :t7;
+    skos:inScheme :themes;
+    skos:notation "7B";
+    skos:prefLabel "Impacts of invasive species and range extensions"@en .
+
+:t7C a :Theme,
+        skos:Concept;
+    rdfs:label "Contributions from the watershed"@en;
+    skos:broader :t7;
+    skos:inScheme :themes;
+    skos:notation "7C";
+    skos:prefLabel "Contributions from the watershed"@en .
+
+:t7D a :Theme,
+        skos:Concept;
+    rdfs:label "Transportation via water currents"@en;
+    skos:broader :t7;
+    skos:inScheme :themes;
+    skos:notation "7D";
+    skos:prefLabel "Transportation via water currents"@en .
+
+:t7E a :Theme,
+        skos:Concept;
+    rdfs:label "Regional fisheries issues"@en;
+    skos:broader :t7;
+    skos:inScheme :themes;
+    skos:notation "7E";
+    skos:prefLabel "Regional fisheries issues"@en .
+
+:t8Ai a :Theme,
+        skos:Concept;
+    rdfs:label "Recreational"@en;
+    skos:broader :t8A;
+    skos:inScheme :themes;
+    skos:notation "8Ai";
+    skos:prefLabel "Recreational"@en .
+
+:t8Aii a :Theme,
+        skos:Concept;
+    rdfs:label "Fishing (commercial, recreational, harvest)"@en;
+    skos:broader :t8A;
+    skos:inScheme :themes;
+    skos:notation "8Aii";
+    skos:prefLabel "Fishing (commercial, recreational, harvest)"@en .
+
+:t8Aiii a :Theme,
+        skos:Concept;
+    rdfs:label "Industrial, Military and Security"@en;
+    skos:broader :t8A;
+    skos:inScheme :themes;
+    skos:notation "8Aiii";
+    skos:prefLabel "Industrial, Military and Security"@en .
+
+:t8B a :Theme,
+        skos:Concept;
+    rdfs:label "Drivers + values (market and non-market) of current uses"@en;
+    skos:broader :t8;
+    skos:inScheme :themes;
+    skos:notation "8B";
+    skos:prefLabel "Drivers + values (market and non-market) of current uses"@en .
+
+:t8C a :Theme,
+        skos:Concept;
+    rdfs:label "Maps of other non-use ecosystem services"@en;
+    skos:broader :t8;
+    skos:inScheme :themes;
+    skos:notation "8C";
+    skos:prefLabel "Maps of other non-use ecosystem services"@en .
+
+:t9A a :Theme,
+        skos:Concept;
+    rdfs:label "Marine protected areas"@en;
+    skos:broader :t9;
+    skos:inScheme :themes;
+    skos:notation "9A";
+    skos:prefLabel "Marine protected areas"@en .
+
+:t9B a :Theme,
+        skos:Concept;
+    rdfs:label "Commercial leases and other special use allocations"@en;
+    skos:broader :t9;
+    skos:inScheme :themes;
+    skos:notation "9B";
+    skos:prefLabel "Commercial leases and other special use allocations"@en .
+
+:t9C a :Theme,
+        skos:Concept;
+    rdfs:label "Jurisdictional boundaries: domestic, tribal, international"@en;
+    skos:broader :t9;
+    skos:inScheme :themes;
+    skos:notation "9C";
+    skos:prefLabel "Jurisdictional boundaries: domestic, tribal, international"@en .
+
+:t9D a :Theme,
+        skos:Concept;
+    rdfs:label "Tribal use areas (e.g. usual and accustomed areas)"@en;
+    skos:broader :t9;
+    skos:inScheme :themes;
+    skos:notation "9D";
+    skos:prefLabel "Tribal use areas (e.g. usual and accustomed areas)"@en .
+
+:t9E a :Theme,
+        skos:Concept;
+    rdfs:label "Other spatial measures affecting specific areas"@en;
+    skos:broader :t9;
+    skos:inScheme :themes;
+    skos:notation "9E";
+    skos:prefLabel "Other spatial measures affecting specific areas"@en .
+
+:t1 a :Theme,
+	skos:Concept;
+    rdfs:label "Non-Living Resources of Interest"@en;
+    skos:inScheme :themes;
+    skos:narrower :t1A,
+        :t1B;
+    skos:notation "1";
+    skos:prefLabel "Non-Living Resources of Interest"@en .
+
+:t2 a :Theme,
+        skos:Concept;
+    rdfs:label "Living Resources of Interest"@en;
+    skos:inScheme :themes;
+    skos:narrower :t2A,
+        :t2B,
+        :t2C;
+    skos:notation "2";
+    skos:prefLabel "Living Resources of Interest"@en .
+
+:t2C a :Theme,
+        skos:Concept;
+    rdfs:label "Threatened and endangered species"@en;
+    skos:broader :t2;
+    skos:inScheme :themes;
+    skos:narrower :t2Ci,
+        :t2Cii,
+        :t2Ciii;
+    skos:notation "2C";
+    skos:prefLabel "Threatened and endangered species"@en .
+
+:t8 a :Theme,
+        skos:Concept;
+    rdfs:label "Ocean Uses and Ecosystem Services"@en;
+    skos:inScheme :themes;
+    skos:narrower :t8A,
+        :t8B,
+        :t8C;
+    skos:notation "8";
+    skos:prefLabel "Ocean Uses and Ecosystem Services"@en .
+
+:t8A a :Theme,
+        skos:Concept;
+    rdfs:label "Patterns of current uses by sectors"@en;
+    skos:broader :t8;
+    skos:inScheme :themes;
+    skos:narrower :t8Ai,
+        :t8Aii,
+        :t8Aiii;
+    skos:notation "8A";
+    skos:prefLabel "Patterns of current uses by sectors"@en .
+
+:t10 a :Theme,
+        skos:Concept;
+    rdfs:label "Infrastructure"@en;
+    skos:inScheme :themes;
+    skos:narrower :t10A,
+        :t10B,
+        :t10C,
+        :t10D;
+    skos:notation "10";
+    skos:prefLabel "Infrastructure"@en .
+
+:t1B a :Theme,
+        skos:Concept;
+    rdfs:label "Other non-living resources"@en;
+    skos:broader :t1;
+    skos:inScheme :themes;
+    skos:narrower :t1Bi,
+        :t1Bii,
+        :t1Biii,
+        :t1Biv;
+    skos:notation "1B";
+    skos:prefLabel "Other non-living resources"@en .
+
+:t4G a :Theme,
+        skos:Concept;
+    rdfs:label "Functions and processes"@en;
+    skos:broader :t4;
+    skos:inScheme :themes;
+    skos:narrower :t4Gi,
+        :t4Gii,
+        :t4Giii,
+        :t4Giv;
+    skos:notation "4G";
+    skos:prefLabel "Functions and processes"@en .
+
+:t2B a :Theme,
+        skos:Concept;
+    rdfs:label "Typically non-extracted species"@en;
+    skos:broader :t2;
+    skos:inScheme :themes;
+    skos:narrower :t2Bi,
+        :t2Bii,
+        :t2Biii,
+        :t2Biv,
+        :t2Bv;
+    skos:notation "2B";
+    skos:prefLabel "Typically non-extracted species"@en .
+
+:t3 a :Theme,
+        skos:Concept;
+    rdfs:label "Areas and Resources of Historical, Cultural and Spiritual Interest"@en;
+    skos:inScheme :themes;
+    skos:narrower :t3A,
+        :t3B,
+        :t3C,
+        :t3D,
+        :t3E;
+    skos:notation "3";
+    skos:prefLabel "Areas and Resources of Historical, Cultural and Spiritual Interest"@en .
+
+:t7 a :Theme,
+        skos:Concept;
+    rdfs:label "Ecological Impacts"@en;
+    skos:inScheme :themes;
+    skos:narrower :t7A,
+        :t7B,
+        :t7C,
+        :t7D,
+        :t7E;
+    skos:notation "7";
+    skos:prefLabel "Ecological Impacts"@en .
+
+:t9 a :Theme,
+        skos:Concept;
+    rdfs:label "Ocean Governance and Spatial Management Regimes"@en;
+    skos:inScheme :themes;
+    skos:narrower :t9A,
+        :t9B,
+        :t9C,
+        :t9D,
+        :t9E;
+    skos:notation "9";
+    skos:prefLabel "Ocean Governance and Spatial Management Regimes"@en .
+
+:t2A a :Theme,
+        skos:Concept;
+    rdfs:label "Commonly extracted species"@en;
+    skos:broader :t2;
+    skos:inScheme :themes;
+    skos:narrower :t2Ai,
+        :t2Aii,
+        :t2Aiii,
+        :t2Aiv,
+        :t2Av,
+        :t2Avi;
+    skos:notation "2A";
+    skos:prefLabel "Commonly extracted species"@en .
+
+:t1A a :Theme,
+        skos:Concept;
+    rdfs:label "Energy resources"@en;
+    skos:broader :t1;
+    skos:inScheme :themes;
+    skos:narrower :t1Ai,
+        :t1Aii,
+        :t1Aiii,
+        :t1Aiv,
+        :t1Av,
+        :t1Avi,
+        :t1Avii;
+    skos:notation "1A";
+    skos:prefLabel "Energy resources"@en .
+
+:t4 a :Theme,
+        skos:Concept;
+    rdfs:label "Physical Features of Coastal, Marine, GL Areas"@en;
+    skos:inScheme :themes;
+    skos:narrower :t4A,
+        :t4B,
+        :t4C,
+        :t4D,
+        :t4E,
+        :t4F,
+        :t4G;
+    skos:notation "4";
+    skos:prefLabel "Physical Features of Coastal, Marine, GL Areas"@en .
+
+:t5 a :Theme,
+        skos:Concept;
+    rdfs:label "Biotic Features of Habitats and Species Distributions"@en;
+    skos:inScheme :themes;
+    skos:narrower :t5A,
+        :t5B,
+        :t5C,
+        :t5D,
+        :t5E,
+        :t5F,
+        :t5G;
+    skos:notation "5";
+    skos:prefLabel "Biotic Features of Habitats and Species Distributions"@en .
+
+:t6 a :Theme,
+        skos:Concept;
+    rdfs:label "Ecological Functions and Processes"@en;
+    skos:inScheme :themes;
+    skos:narrower :t6A,
+        :t6B,
+        :t6C,
+        :t6D,
+        :t6E,
+        :t6F,
+        :t6G,
+        :t6H;
+    skos:notation "6";
+    skos:prefLabel "Ecological Functions and Processes"@en .
+
+:themes a skos:ConceptScheme;
+    dct:title "CMSPV Themes"@en;
+    skos:hasTopConcept :t1,
+        :t10,
+        :t2,
+        :t3,
+        :t4,
+        :t5,
+        :t6,
+        :t7,
+        :t8,
+        :t9 .
+
