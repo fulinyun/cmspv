@@ -1,0 +1,7 @@
+gcmd-sciencekeywords.rdf nims.ttl NIMS-GCMD-Mapping4.html 1
+
+
+		String onto1 = args[0]; // "gcmd-sciencekeywords.rdf";
+		String onto2 = args[1]; // "nims.ttl";
+		String output = args[2]; // "NIMS-GCMD-Mapping4.html";
+		int level = Integer.parseInt(args[3]); // int level = 2;

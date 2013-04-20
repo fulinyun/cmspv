@@ -1,0 +1,18 @@
+# RDFS Closure rules
+[rdfs6:  (?p rdfs:subPropertyOf ?q), notEqual(?p,?q) -> table(?p, ?q), [ (?a ?q ?b) <- (?a ?p ?b)] ] 
+
+# inverseOf
+[inverseOf1: (?P owl:inverseOf ?Q) -> (?Q owl:inverseOf ?P) ]
+
+[inverseOf2: (?P owl:inverseOf ?Q) -> table(?P), table(?Q), [inverseOf2b: (?X ?P ?Y) <- (?Y ?Q ?X)] ]
+
+# TransitiveProperty
+[transitiveProperty1: (?P rdf:type owl:TransitiveProperty) -> table(?P),
+			[transitiveProperty1b:  (?A ?P ?C) <- bound (?C), (?B ?P ?C), (?A ?P ?B)] 
+			[transitiveProperty1b:  (?A ?P ?C) <- unbound (?C), (?A ?P ?B) (?B ?P ?C)] 
+			]
+
+# SymmetricProperty
+[symmetricProperty1: (?P rdf:type owl:SymmetricProperty) -> table(?P),
+                     [symmetricProperty1b: (?X ?P ?Y) <- (?Y ?P ?X)] ]
+
