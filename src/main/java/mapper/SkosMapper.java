@@ -53,13 +53,21 @@ public class SkosMapper {
 	
 	public static void mainMap(String[] args) {
 		
-		if (args.length < 4) {
-			System.out.println("Usage: java mapper.SkosMapper onto1 onto2 output level");
+		if (args.length < 5) {
+			System.out.println("Usage: java mapper.SkosMapper onto1 onto2 output level prefix");
+			System.out.println("onto1, onto2: for each subject in onto2, find 4 subjects in onto1 with the highest matching scores");
+			System.out.println("output: a html file to hold the mapping results");
+			System.out.println("level: the distance of consulting other resources when trying to map two resources");
+			System.out.println("prefix: the prefix of URL to consider in onto2");
+			System.out.println("example: java mapper.SkosMapper gcmd-sciencekeywords.rdf nims.ttl NIMS-GCMD-Mapping4.html 1 http://cmspv.tw.rpi.edu/rdf/");
+			System.exit(0);
 		}
+		
 		String onto1 = args[0]; // "gcmd-sciencekeywords.rdf";
 		String onto2 = args[1]; // "nims.ttl";
 		String output = args[2]; // "NIMS-GCMD-Mapping4.html";
 		int level = Integer.parseInt(args[3]); // int level = 2;
+		String prefix = args[4]; // "http://cmspv.tw.rpi.edu/rdf/";
 		
 		InfModel model1 = null;
 		InfModel model2 = null;
@@ -88,10 +96,11 @@ public class SkosMapper {
 		// Hashtable<String, ArrayList<String>>();
 		// narrowers = BroaderVoting.processNarrower(narrowers,GCMDModel);
 
-		// for each subject in model2, find matches from model1
+		// for each subject in model2 (args[1]), find 4 matches from model1 (args[0])
 		// model1 is stored in WDM
 		while (subjects.hasNext()) {
 			Resource subject = subjects.next();
+			if (!subject.toString().startsWith(prefix)) continue;
 			System.out.println("matching... (" + subject.toString() + ")");
 
 			Map<String, List<String>> d = new Hashtable<String, List<String>>();
