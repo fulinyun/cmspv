@@ -99,11 +99,7 @@ public class EntityFeatureModelSimilarity implements Similarity {
 		if (object2IsURL)
 			object2 = getStatmentString(object2, statements1);
 
-		return textSim.computeSimilarity(object1, object2, 1); // jaccard
-																// similarity
-																// doesn't
-																// consider
-																// depth (level)
+		return textSim.computeSimilarity(object1, object2, 1); // jaccard similarity doesn't consider depth (level)
 
 	}
 

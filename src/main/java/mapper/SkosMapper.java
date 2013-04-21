@@ -14,6 +14,7 @@ import java.util.Map;
 import util.Utils;
 
 import Similarity.EntityFeatureModelSimilarity;
+import Similarity.JaccardSimilarity;
 import Similarity.Similarity;
 import Similarity.Matcher.EntityMatcher;
 import Similarity.Matcher.WebOfDataMatcher;
@@ -151,7 +152,7 @@ public class SkosMapper {
 //					System.out.println("</tr>");
 					out.println("<tr>");
 					out.println(tableFormat(subject.toString(), match, glabels,
-							labels, matches.get(match), explain(model2, subject.toString(), model1, match)));
+							labels, matches.get(match), explain(model2, subject.toString(), model1, match, level)));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -179,9 +180,19 @@ public class SkosMapper {
 		}
 	}
 
-	private static String explain(Model model1, String e1, Model model2, String e2) {
-		// TODO Auto-generated method stub
-		return null;
+	private static String explain(Model model1, String e1, Model model2, String e2, int level) {
+		String ret = "level " + level + ":&#13;";
+		Similarity textSim = new JaccardSimilarity();
+		
+		if (level == 0) {
+			ret += e1 + " vs. " + e2 + " : " + textSim.computeSimilarity(e1, e2, 0) + "&#13;";
+			return ret;
+		}
+		
+		List<String> d1 = Utils.getDescriptions(model1, e1, new ArrayList<String>());
+		List<String> d2 = Utils.getDescriptions(model2, e2, new ArrayList<String>());
+		
+		return ret;
 	}
 
 	public static String updateVotes(String myconcept,
