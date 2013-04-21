@@ -1,17 +1,17 @@
 package Similarity.Matcher;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
+import util.Utils;
 import Similarity.Similarity;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ResIterator;
 import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.rdf.model.Statement;
-import com.hp.hpl.jena.rdf.model.StmtIterator;
 
 public class EntityMatcher implements WebOfDataMatcher {
 
@@ -43,8 +43,7 @@ public class EntityMatcher implements WebOfDataMatcher {
 		double maxSimScore = 0.0;
 		String matchRes = "";
 		ResIterator subjects = model.listSubjects();
-		Hashtable<String, ArrayList<String>> thisDescriptions = new Hashtable<String, ArrayList<String>>();
-		getAllDescriptions(thisDescriptions);
+		Map<String, List<String>> thisDescriptions = Utils.getAllDescriptions(model, new HashMap<String, List<String>>());
 
 		while (subjects.hasNext()) {
 			Resource subject = subjects.next();
@@ -82,31 +81,6 @@ public class EntityMatcher implements WebOfDataMatcher {
 		return score;
 	}
 
-	public void getAllDescriptions(
-			Hashtable<String, ArrayList<String>> descriptions) {
-		StmtIterator stmtItr = model.listStatements();
-
-		while (stmtItr.hasNext()) {
-			Statement stmt = stmtItr.next();
-			String stmtString = stmt.toString().replaceAll(",", "")
-					.replaceAll("\\[", "").replaceAll("\\]", "");
-			String subject = stmt.getSubject().toString();
-
-			if (descriptions.keySet().contains(subject)) {
-				ArrayList<String> statements = descriptions.get(subject);
-				;
-				statements.add(stmtString);
-				descriptions.put(subject, statements);
-			} else {
-				ArrayList<String> statements = new ArrayList<String>();
-				statements.add(stmtString);
-				descriptions.put(subject, statements);
-			}
-
-		}
-
-	}
-
 	public Map<String, Double> findMatches(String url,
 			Map<String, List<String>> description) {
 		Hashtable<String, ArrayList<String>> d = new Hashtable<String, ArrayList<String>>();
@@ -122,8 +96,7 @@ public class EntityMatcher implements WebOfDataMatcher {
 		Hashtable<String, Double> match_score = new Hashtable<String, Double>();
 		// String matchRes = "";
 		ResIterator subjects = model.listSubjects();
-		Hashtable<String, ArrayList<String>> thisDescriptions = new Hashtable<String, ArrayList<String>>();
-		getAllDescriptions(thisDescriptions);
+		Map<String, List<String>> thisDescriptions = Utils.getAllDescriptions(model, new HashMap<String, List<String>>());
 		ArrayList<String> processed = new ArrayList<String>();
 		while (subjects.hasNext()) {
 			Resource subject = subjects.next();

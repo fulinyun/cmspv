@@ -11,6 +11,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import util.Utils;
+
 import Similarity.EntityFeatureModelSimilarity;
 import Similarity.Similarity;
 import Similarity.Matcher.EntityMatcher;
@@ -37,13 +39,13 @@ public class SkosMapper {
 	}
 
 	public static void mainTest() {
-		InfModel model1 = null;
-		InfModel model2 = null;
+		Model model1 = null;
+		Model model2 = null;
 		try {
-			model1 = createSkosModel("gcmd-sciencekeywords.rdf");
+			model1 = Utils.createSkosModel("gcmd-sciencekeywords.rdf");
 			for (StmtIterator i = model1.listStatements(); i.hasNext(); ) System.out.println(i.next().toString());		
 			model1.close();
-			model2 = createSkosModel("nims.ttl");
+			model2 = Utils.createSkosModel("nims.ttl");
 			for (StmtIterator i = model2.listStatements(); i.hasNext(); ) System.out.println(i.next().toString());		
 			model2.close();
 		} catch (Exception e) {
@@ -69,12 +71,12 @@ public class SkosMapper {
 		int level = Integer.parseInt(args[3]); // int level = 2;
 		String prefix = args[4]; // "http://cmspv.tw.rpi.edu/rdf/";
 		
-		InfModel model1 = null;
-		InfModel model2 = null;
+		Model model1 = null;
+		Model model2 = null;
 		PrintWriter out = null;
 		try {
-			model1 = createSkosModel(onto1);
-			model2 = createSkosModel(onto2);
+			model1 = Utils.createSkosModel(onto1);
+			model2 = Utils.createSkosModel(onto2);
 
 			FileWriter ofstream = new FileWriter(output);
 			out = new PrintWriter(new BufferedWriter(ofstream));
@@ -149,7 +151,7 @@ public class SkosMapper {
 //					System.out.println("</tr>");
 					out.println("<tr>");
 					out.println(tableFormat(subject.toString(), match, glabels,
-							labels, matches.get(match)));
+							labels, matches.get(match), explain(model2, subject.toString(), model1, match)));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -177,21 +179,9 @@ public class SkosMapper {
 		}
 	}
 
-	private static InfModel createSkosModel(String filename) throws FileNotFoundException {
-		Model base = ModelFactory.createDefaultModel();
-		
-		FileInputStream fstream = new FileInputStream(filename);
-		String lang = null;
-		if (filename.toLowerCase().endsWith(".ttl")) lang = "TTL"; 
-		base.read(fstream, "", lang);
-		
-		base.read("http://www.w3.org/2009/08/skos-reference/skos.rdf");
-		
-		List<Rule> ruleList = Rule.rulesFromURL("file:skos.rules");
-		GenericRuleReasoner reasoner = new GenericRuleReasoner(ruleList);
-
-		return ModelFactory.createInfModel(reasoner, base);
-
+	private static String explain(Model model1, String e1, Model model2, String e2) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	public static String updateVotes(String myconcept,
@@ -239,7 +229,7 @@ public class SkosMapper {
 	}
 
 	public static String tableFormat(String e1, String e2, String notes,
-			String notes2, double scores) {
+			String notes2, double scores, String explain) {
 		// String output = "<tr>\n";
 		// for(String e2:e2s){
 		String output = "";
@@ -247,7 +237,7 @@ public class SkosMapper {
 		output += "<td>" + notes + "</td>";
 		output += "<td>" + e2 + "</td>";
 		output += "<td>" + notes2 + "</td>";
-		output += "<td>" + scores + "</td>";
+		output += "<td title=\""+explain+"\">" + scores + "</td>";
 		// }
 		// output +="</tr>";
 		return output;
@@ -282,7 +272,6 @@ public class SkosMapper {
 
 			if (descriptions.keySet().contains(subject)) {
 				ArrayList<String> statements = descriptions.get(subject);
-				;
 				statements.add(stmtString);
 				descriptions.put(subject, statements);
 			} else {
