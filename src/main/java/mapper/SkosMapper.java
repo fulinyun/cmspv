@@ -9,7 +9,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.PriorityQueue;
@@ -17,7 +16,6 @@ import java.util.Random;
 
 import util.Utils;
 import Similarity.EntityFeatureModelSimilarity;
-import Similarity.JaccardSimilarity;
 import Similarity.Similarity;
 
 import com.hp.hpl.jena.rdf.model.Model;
@@ -26,7 +24,6 @@ import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.ResIterator;
 import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.rdf.model.ResourceFactory;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 
@@ -142,33 +139,33 @@ public class SkosMapper {
 
 			for (Map.Entry<Resource, Double> match : matches) {
 				Resource s = match.getKey();
-				Property p = ResourceFactory
-						.createProperty("http://www.w3.org/2004/02/skos/core#prefLabel");
+				Property p = null;
 				RDFNode v = null;
 
-				StmtIterator itr = model1.listStatements(s, p, v);
-				String labels = "";
-				while (itr.hasNext()) {
-					Statement stmt = itr.next();
-					String object = stmt.getObject().toString();
-					labels += object + " ";
+				StmtIterator st1 = model1.listStatements(s, p, v);
+				String des1 = "";
+				String label1 = "";
+				while (st1.hasNext()) {
+					Statement st = st1.next();
+					des1 += st.toString().replace("\"", "")+"&#13;";
+					if (st.getPredicate().toString().equals("http://www.w3.org/2004/02/skos/core#prefLabel")) 
+						label1 = st.getObject().toString(); 
 				}
 
-				try {
-					StmtIterator gitr = model2.listStatements(subject, p, v);
-					String glabels = "";
-					while (gitr.hasNext()) {
-						Statement stmt = gitr.next();
-						String object = stmt.getObject().toString();
-						glabels += object + " ";
-					}
-					out.println("<tr>");
-					out.println(tableFormat(subject.toString(), s.toString(), glabels,
-							labels, match.getValue(), explanation.get(s)));
-					out.println("</tr>");
-				} catch (Exception e) {
-					e.printStackTrace();
+				StmtIterator st2 = model2.listStatements(subject, p, v);
+				String des2 = "";
+				String label2 = "";
+				while (st2.hasNext()) {
+					Statement st = st2.next();
+					des2 += st.toString().replace("\"", "")+"&#13;";
+					if (st.getPredicate().toString().equals("http://www.w3.org/2004/02/skos/core#prefLabel"))
+						label2 = st.getObject().toString();
 				}
+				
+				out.println("<tr>");
+				out.println(tableFormat(label2, label1, des2,
+						des1, match.getValue(), explanation.get(s)));
+				out.println("</tr>");
 			}
 		}
 
@@ -256,10 +253,8 @@ public class SkosMapper {
 			String notes2, double scores, String explain) {
 //		System.out.println(e1 + ", " + e2 + ", " + explain);
 		String output = "";
-		output += "<td>" + e1 + "</td>";
-		output += "<td>" + notes + "</td>";
-		output += "<td>" + e2 + "</td>";
-		output += "<td>" + notes2 + "</td>";
+		output += "<td title=\""+notes+"\">" + e1 + "</td>";
+		output += "<td title=\""+notes2+"\">" + e2 + "</td>";
 		output += "<td title=\""+explain+"\">" + scores + "</td>";
 		return output;
 	}
