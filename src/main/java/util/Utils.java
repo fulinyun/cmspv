@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
@@ -109,6 +110,21 @@ public class Utils {
 
 	}
 
+	public static String getDescriptionString(String s, Model m) {
+		List<String> stmts = getDescriptionStrings(m, s, new ArrayList<String>());
+
+		StringBuilder stmtString = new StringBuilder();
+		for (String stmt : stmts) {
+			String object = stmt.split(" ", 3)[2];
+			object = object.replaceAll(
+					"\\^\\^http://www.w3.org/2001/XMLSchema#.*", "")
+					.replaceAll("http:/.*(#|/)", "");
+			stmtString.append(object);
+			stmtString.append(" ");
+		}
+		return stmtString.toString();
+	}
+
 	public static void testGetDescriptions(String filename, String[] subjects) {
 		Model model = null;
 		try {
@@ -151,6 +167,7 @@ public class Utils {
 			e.printStackTrace();
 		}
 	}
+	
 	
 	public static void main(String[] args) {
 		String[] gcmdStrings = {"http://gcmdservices.gsfc.nasa.gov/kms/concept/cabd97d6-aa6c-48b8-963b-79248634ce5d",

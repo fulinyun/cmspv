@@ -6,7 +6,7 @@ import java.util.Map;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.Property;
-import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.RDFNode;
 
 public class JaccardSimilarity implements Similarity {
 	int highlevel = 2;
@@ -36,7 +36,7 @@ public class JaccardSimilarity implements Similarity {
 
 	}
 
-	public double computeSimilarity(Resource r1, Model m1, Resource r2, Model m2, int level) {
+	public double computeSimilarity(RDFNode r1, Model m1, RDFNode r2, Model m2, int level) {
 		String concept1 = r1.toString().toLowerCase();
 		String concept2 = r2.toString().toLowerCase();
 
