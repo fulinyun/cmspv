@@ -1,27 +1,23 @@
 package mapper;
 
 import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import util.Utils;
-
 import Similarity.EntityFeatureModelSimilarity;
 import Similarity.JaccardSimilarity;
 import Similarity.Similarity;
 import Similarity.Matcher.EntityMatcher;
 import Similarity.Matcher.WebOfDataMatcher;
 
-import com.hp.hpl.jena.rdf.model.InfModel;
 import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.ResIterator;
@@ -29,8 +25,6 @@ import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.ResourceFactory;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
-import com.hp.hpl.jena.reasoner.rulesys.GenericRuleReasoner;
-import com.hp.hpl.jena.reasoner.rulesys.Rule;
 
 public class SkosMapper {
 	
@@ -91,9 +85,9 @@ public class SkosMapper {
 		Similarity sim = new EntityFeatureModelSimilarity();
 		WebOfDataMatcher WDM = new EntityMatcher(model1, sim, level, 4);
 
+		Map<Resource, List<Statement>> m1descriptions = Utils.getAllDescriptions(model1, new HashMap<Resource, List<Statement>>());
+//		Map<Resource, List<Statement>> m2descriptions = Utils.getAllDescriptions(model2, new HashMap<Resource, List<Statement>>());
 		ResIterator subjects = model2.listSubjects();
-		Hashtable<String, ArrayList<String>> descriptions = new Hashtable<String, ArrayList<String>>();
-		getAllDescriptions(model2, descriptions);
 
 		// Hashtable<String, ArrayList<String>> narrowers = new
 		// Hashtable<String, ArrayList<String>>();
@@ -106,12 +100,12 @@ public class SkosMapper {
 			if (!subject.toString().startsWith(prefix)) continue;
 			System.out.println("matching... (" + subject.toString() + ")");
 
-			Map<String, List<String>> d = new Hashtable<String, List<String>>();
-			for (String key : descriptions.keySet())
-				d.put(key, descriptions.get(key));
-
-			Hashtable<String, Double> matches = (Hashtable<String, Double>) WDM
-					.findMatches(subject.toString(), d);
+			List<Statement> des = Utils.getDescriptions(model2, subject, new ArrayList<Statement>());
+			HashMap<String, Double> matches = new HashMap<String, Double>();
+			HashMap<String, String> explanation = new HashMap<String, String>();
+			findMatches(des, m1descriptions, sim, level, 4, matches, explanation);
+//			Hashtable<String, Double> matches = (Hashtable<String, Double>) WDM
+//					.findMatches(subject.toString(), d);
 			// String matching = WDM.findMatch(subject.toString(),descriptions);
 			// ArrayList<String> matches = new ArrayList<String> ();
 			// matches.add(matching);
@@ -180,17 +174,37 @@ public class SkosMapper {
 		}
 	}
 
-	private static String explain(Model model1, String e1, Model model2, String e2, int level) {
+	/**
+	 * 
+	 * @param resdes a list of statements, describing the resource we'd like to find matches for
+	 * @param mdes a map storing the whole model from which we'd like to find matches for the resource in resdes. 
+	 * resources are keys in the map and values are statements describing the resources
+	 * @param sim the Similarity object used to calculate resource similarity (e.g., EntityFeatureModelSimilarity)
+	 * @param level the depth we'd like to trace down the property links to consider related resources for the matching
+	 * @param nummatch the number of matches we'd like to find from the resources in mdes for the resource in resdes
+	 * @param matches a map used to store matching results, keys are resources from mdes, values are double matching scores
+	 * @param explanation a map used to store matching explanations, keys are resources from mdes, values are textual 
+	 * explanations for matching scores
+	 */
+	private static void findMatches(List<Statement> resdes,
+			Map<Resource, List<Statement>> mdes, Similarity sim,
+			int level, int nummatch, HashMap<String, Double> matches,
+			HashMap<String, String> explanation) {
+		
+	}
+
+	private static String explain(Model model1, Resource e1, Model model2, Resource e2, int level) {
 		String ret = "level " + level + ":&#13;";
 		Similarity textSim = new JaccardSimilarity();
 		
 		if (level == 0) {
-			ret += e1 + " vs. " + e2 + " : " + textSim.computeSimilarity(e1, e2, 0) + "&#13;";
+			ret += e1.toString() + " vs. " + e2.toString() + " : " + textSim.computeSimilarity(e1.toString(), e2.toString(), 0) + "&#13;";
 			return ret;
 		}
 		
-		List<String> d1 = Utils.getDescriptions(model1, e1, new ArrayList<String>());
-		List<String> d2 = Utils.getDescriptions(model2, e2, new ArrayList<String>());
+		List<Statement> d1 = Utils.getDescriptions(model1, e1, new ArrayList<Statement>());
+		List<Statement> d2 = Utils.getDescriptions(model2, e2, new ArrayList<Statement>());
+		
 		
 		return ret;
 	}
