@@ -2,7 +2,11 @@ package Similarity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Hashtable;
+import java.util.Map;
+
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.RDFNode;
 
 public class JaccardSimilarity implements Similarity {
 	int highlevel = 2;
@@ -32,9 +36,9 @@ public class JaccardSimilarity implements Similarity {
 
 	}
 
-	public double computeSimilarity(String concept1, String concept2, int level) {
-		concept1 = concept1.toLowerCase();
-		concept2 = concept2.toLowerCase();
+	public double computeSimilarity(RDFNode r1, Model m1, RDFNode r2, Model m2, int level) {
+		String concept1 = r1.toString().toLowerCase();
+		String concept2 = r2.toString().toLowerCase();
 
 		concept1 = concept1.replaceAll(
 				"\\^\\^http://www.w3.org/2001/xmlschema#.*", "").replaceAll(
@@ -181,25 +185,30 @@ public class JaccardSimilarity implements Similarity {
 		return returnString;
 	}
 
-	public void setWeights(Hashtable<String, Double> weightVector) {
+	public void setWeights(Map<Property, Double> weightVector) {
 		// TODO Auto-generated method stub
 
 	}
 
-	public Hashtable<String, Double> getFeatureSim(String object1,
-			String object2, int level) {
-
-		return null;
+	public String explainSimilarity(RDFNode r1, Model m1, RDFNode r2, Model m2,
+			int depth, double score) {
+		return r1.toString() + " vs. " + r2.toString() + " : " + score;
 	}
 
-	public void setFirstObjectDescription(Object description1) {
-		// TODO Auto-generated method stub
+//	public Hashtable<String, Double> getFeatureSim(String object1,
+//			String object2, int level) {
+//
+//		return null;
+//	}
 
-	}
+//	public void setFirstObjectDescription(Object description1) {
+//		// TODO Auto-generated method stub
+//
+//	}
 
-	public void setSecondObjectDescription(Object description2) {
-		// TODO Auto-generated method stub
-
-	}
+//	public void setSecondObjectDescription(Object description2) {
+//		// TODO Auto-generated method stub
+//
+//	}
 
 }
