@@ -18,22 +18,12 @@ public class EntityFeatureModelSimilarity implements Similarity {
 	double alpha;
 	double beta;
 	Similarity textSim;
-//	Hashtable<String, ArrayList<String>> statements1;
-//	Hashtable<String, ArrayList<String>> statements2;
 
 	public EntityFeatureModelSimilarity() {
 		alpha = 1;
 		beta = 1;
 		textSim = new JaccardSimilarity();
 	}
-
-//	public void setFirstObjectDescription(Object description1) {
-//		statements1 = (Hashtable<String, ArrayList<String>>) description1;
-//	}
-
-//	public void setSecondObjectDescription(Object description2) {
-//		statements2 = (Hashtable<String, ArrayList<String>>) description2;
-//	}
 
 	public double computeSimilarity(RDFNode r1, Model m1, RDFNode r2, Model m2, int level) {
 
@@ -48,7 +38,6 @@ public class EntityFeatureModelSimilarity implements Similarity {
 
 		HashSet<Statement> matchedStmt2 = new HashSet<Statement>();
 
-		// System.out.println(object1 +" "+ object2);
 		double pvSimSum = 0.0;
 		double object2_common = 0.0;
 		for (Statement stmt1 : topStmt1) {
@@ -165,7 +154,7 @@ public class EntityFeatureModelSimilarity implements Similarity {
 		if (p2.equals("http://www.w3.org/2004/02/skos/core#definition")
 				&& p1.equals("http://www.w3.org/2000/01/rdf-schema#label"))
 			return true;
-		//
+		
 		return false;
 
 	}

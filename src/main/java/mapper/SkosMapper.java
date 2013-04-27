@@ -208,22 +208,6 @@ public class SkosMapper {
 		}
 	}
 
-//	private static String explain(Model model1, Resource e1, Model model2, Resource e2, int level) {
-//		String ret = "level " + level + ":&#13;";
-//		Similarity textSim = new JaccardSimilarity();
-//		
-//		if (level == 0) {
-//			ret += e1.toString() + " vs. " + e2.toString() + " : " + textSim.computeSimilarity(e1.toString(), e2.toString(), 0) + "&#13;";
-//			return ret;
-//		}
-//		
-//		List<Statement> d1 = Utils.getDescriptions(model1, e1, new ArrayList<Statement>());
-//		List<Statement> d2 = Utils.getDescriptions(model2, e2, new ArrayList<Statement>());
-//		
-//		
-//		return ret;
-//	}
-
 	public static String updateVotes(String myconcept,
 			Hashtable<String, ArrayList<String>> broaders,
 			LinkedHashMap<String, Double> votes, double voteScore) {
