@@ -190,6 +190,11 @@ public class JaccardSimilarity implements Similarity {
 
 	}
 
+	public String explainSimilarity(RDFNode r1, Model m1, RDFNode r2, Model m2,
+			int depth, double score) {
+		return r1.toString() + " vs. " + r2.toString() + " : " + score;
+	}
+
 //	public Hashtable<String, Double> getFeatureSim(String object1,
 //			String object2, int level) {
 //

@@ -3,21 +3,25 @@ package mapper;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.PriorityQueue;
+import java.util.Random;
 
 import util.Utils;
 import Similarity.EntityFeatureModelSimilarity;
 import Similarity.JaccardSimilarity;
 import Similarity.Similarity;
-import Similarity.Matcher.EntityMatcher;
-import Similarity.Matcher.WebOfDataMatcher;
 
 import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.ResIterator;
@@ -29,10 +33,39 @@ import com.hp.hpl.jena.rdf.model.StmtIterator;
 public class SkosMapper {
 	
 	public static void main(String[] args) {
+//		mainTestEntryAndPriorityQueue();
 //		mainTest();
 		mainMap(args);
 	}
 
+	public static void mainTestEntryAndPriorityQueue() {
+		Model m = ModelFactory.createDefaultModel();
+		PriorityQueue<Map.Entry<Resource, Double>> pq= new PriorityQueue<Map.Entry<Resource, Double>>(
+				3, new Comparator<Map.Entry<Resource, Double>>() {
+
+					public int compare(Entry<Resource, Double> e1,
+							Entry<Resource, Double> e2) {
+						double v1 = e1.getValue();
+						double v2 = e2.getValue();
+						if (v1 > v2) return 1;
+						if (v1 < v2) return -1;
+						return 0;
+					}
+					
+				});
+		Random rand = new Random();
+		for (int i = 0; i < 9; ++i) {
+			Resource r = m.createResource("http://www.example.com/resource"+i);
+			double s = rand.nextDouble();
+			System.out.println("adding " + r + "," + s);
+			AbstractMap.SimpleEntry<Resource, Double> e = new AbstractMap.SimpleEntry<Resource, Double>(r, s);
+			pq.add(e);
+			if (pq.size() > 3) pq.poll();
+			for (Map.Entry<Resource, Double> ei : pq) System.out.println(ei.getKey().toString() + " : " + ei.getValue());
+		}
+		
+	}
+	
 	public static void mainTest() {
 		Model model1 = null;
 		Model model2 = null;
@@ -83,43 +116,36 @@ public class SkosMapper {
 		}
 
 		Similarity sim = new EntityFeatureModelSimilarity();
-		WebOfDataMatcher WDM = new EntityMatcher(model1, sim, level, 4);
-
-		Map<Resource, List<Statement>> m1descriptions = Utils.getAllDescriptions(model1, new HashMap<Resource, List<Statement>>());
-//		Map<Resource, List<Statement>> m2descriptions = Utils.getAllDescriptions(model2, new HashMap<Resource, List<Statement>>());
 		ResIterator subjects = model2.listSubjects();
 
-		// Hashtable<String, ArrayList<String>> narrowers = new
-		// Hashtable<String, ArrayList<String>>();
-		// narrowers = BroaderVoting.processNarrower(narrowers,GCMDModel);
-
 		// for each subject in model2 (args[1]), find 4 matches from model1 (args[0])
-		// model1 is stored in WDM
 		while (subjects.hasNext()) {
 			Resource subject = subjects.next();
 			if (!subject.toString().startsWith(prefix)) continue;
 			System.out.println("matching... (" + subject.toString() + ")");
 
-			List<Statement> des = Utils.getDescriptions(model2, subject, new ArrayList<Statement>());
-			HashMap<String, Double> matches = new HashMap<String, Double>();
-			HashMap<String, String> explanation = new HashMap<String, String>();
-			findMatches(des, m1descriptions, sim, level, 4, matches, explanation);
-//			Hashtable<String, Double> matches = (Hashtable<String, Double>) WDM
-//					.findMatches(subject.toString(), d);
-			// String matching = WDM.findMatch(subject.toString(),descriptions);
-			// ArrayList<String> matches = new ArrayList<String> ();
-			// matches.add(matching);
+			PriorityQueue<Map.Entry<Resource, Double>> matches = new PriorityQueue<Map.Entry<Resource, Double>>(
+					4, new Comparator<Map.Entry<Resource, Double>>() {
 
-			ArrayList<String> keys = sortedKey(matches);
-			LinkedHashMap<String, Double> votes = new LinkedHashMap<String, Double>();
-			String highestVoteLabel = "";
-			for (String match : keys) {
-				Resource s = ResourceFactory.createResource(match);
+						public int compare(Entry<Resource, Double> e1,
+								Entry<Resource, Double> e2) {
+							double v1 = e1.getValue();
+							double v2 = e2.getValue();
+							if (v1 > v2) return 1;
+							if (v1 < v2) return -1;
+							return 0;
+						}
+				
+					});
+			HashMap<Resource, String> explanation = new HashMap<Resource, String>();
+			findMatches(subject, model2, model1, sim, level, 4, matches, explanation);
+
+			for (Map.Entry<Resource, Double> match : matches) {
+				Resource s = match.getKey();
 				Property p = ResourceFactory
 						.createProperty("http://www.w3.org/2004/02/skos/core#prefLabel");
 				RDFNode v = null;
 
-				// StmtIterator itr = CleanModel.listStatements(s, p, v);
 				StmtIterator itr = model1.listStatements(s, p, v);
 				String labels = "";
 				while (itr.hasNext()) {
@@ -128,11 +154,7 @@ public class SkosMapper {
 					labels += object + " ";
 				}
 
-				// highestVoteLabel = updateVotes(labels.replaceAll("@en",
-				// "").trim(),narrowers,votes,matches.get(match));
-
 				try {
-					// Resource gcmds = ResourceFactory.createResource(subject);
 					StmtIterator gitr = model2.listStatements(subject, p, v);
 					String glabels = "";
 					while (gitr.hasNext()) {
@@ -140,29 +162,13 @@ public class SkosMapper {
 						String object = stmt.getObject().toString();
 						glabels += object + " ";
 					}
-//					System.out.println("<tr>");
-//					System.out.println(tableFormat(subject.toString(), match,
-//							glabels, labels, matches.get(match)));
-//					System.out.println("</tr>");
 					out.println("<tr>");
-					out.println(tableFormat(subject.toString(), match, glabels,
-							labels, matches.get(match), explain(model2, subject.toString(), model1, match, level)));
+					out.println(tableFormat(subject.toString(), s.toString(), glabels,
+							labels, match.getValue(), explanation.get(s)));
+					out.println("</tr>");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
-			try {
-				// out.write("<td>\n");
-				// for(String name:votes.keySet()){
-				// System.out.println(name+": "+votes.get(name));
-				// out.write(name+": "+votes.get(name)+"\n<br/>");
-				// }
-				// System.out.println(subject.toString()+" match "+highestVoteLabel+" "+votes.get(highestVoteLabel)+"\n");
-				// out.write("<b>"+subject.toString()+" broaderMatch "+highestVoteLabel+" "+votes.get(highestVoteLabel)+"</b>\n<br />");
-				// out.write("</td>\n");
-				out.println("</tr>");
-			} catch (Exception e) {
-				e.printStackTrace();
 			}
 		}
 
@@ -176,38 +182,47 @@ public class SkosMapper {
 
 	/**
 	 * 
-	 * @param resdes a list of statements, describing the resource we'd like to find matches for
-	 * @param mdes a map storing the whole model from which we'd like to find matches for the resource in resdes. 
-	 * resources are keys in the map and values are statements describing the resources
+	 * @param subject a resource we'd like to find matches for
+	 * @param model the model subject comes from
+	 * @param target the model we'd like to find matching resources (with subject) from
 	 * @param sim the Similarity object used to calculate resource similarity (e.g., EntityFeatureModelSimilarity)
 	 * @param level the depth we'd like to trace down the property links to consider related resources for the matching
-	 * @param nummatch the number of matches we'd like to find from the resources in mdes for the resource in resdes
-	 * @param matches a map used to store matching results, keys are resources from mdes, values are double matching scores
-	 * @param explanation a map used to store matching explanations, keys are resources from mdes, values are textual 
+	 * @param nummatch the number of matches we'd like to find from the resources in target for the resource subject
+	 * @param matches a map used to store matching results, keys are resources from model target, values are double matching scores
+	 * @param explanation a map used to store matching explanations, keys are resources from model target, values are textual 
 	 * explanations for matching scores
 	 */
-	private static void findMatches(List<Statement> resdes,
-			Map<Resource, List<Statement>> mdes, Similarity sim,
-			int level, int nummatch, HashMap<String, Double> matches,
-			HashMap<String, String> explanation) {
-		
+	private static void findMatches(Resource subject, Model model, Model target, Similarity sim,
+			int level, int nummatch, PriorityQueue<Map.Entry<Resource, Double>> matches,
+			HashMap<Resource, String> explanation) {
+		ResIterator i = target.listSubjects();
+		while (i.hasNext()) {
+			Resource r2 = i.next();
+			double score = sim.computeSimilarity(subject, model, r2, target, level);
+			matches.add(new AbstractMap.SimpleEntry<Resource, Double>(r2, score));
+			if (matches.size() > 4) matches.poll();
+		}
+		for (Map.Entry<Resource, Double> e : matches) {
+			String exp = sim.explainSimilarity(subject, model, e.getKey(), target, level, e.getValue());
+			explanation.put(e.getKey(), exp);
+		}
 	}
 
-	private static String explain(Model model1, Resource e1, Model model2, Resource e2, int level) {
-		String ret = "level " + level + ":&#13;";
-		Similarity textSim = new JaccardSimilarity();
-		
-		if (level == 0) {
-			ret += e1.toString() + " vs. " + e2.toString() + " : " + textSim.computeSimilarity(e1.toString(), e2.toString(), 0) + "&#13;";
-			return ret;
-		}
-		
-		List<Statement> d1 = Utils.getDescriptions(model1, e1, new ArrayList<Statement>());
-		List<Statement> d2 = Utils.getDescriptions(model2, e2, new ArrayList<Statement>());
-		
-		
-		return ret;
-	}
+//	private static String explain(Model model1, Resource e1, Model model2, Resource e2, int level) {
+//		String ret = "level " + level + ":&#13;";
+//		Similarity textSim = new JaccardSimilarity();
+//		
+//		if (level == 0) {
+//			ret += e1.toString() + " vs. " + e2.toString() + " : " + textSim.computeSimilarity(e1.toString(), e2.toString(), 0) + "&#13;";
+//			return ret;
+//		}
+//		
+//		List<Statement> d1 = Utils.getDescriptions(model1, e1, new ArrayList<Statement>());
+//		List<Statement> d2 = Utils.getDescriptions(model2, e2, new ArrayList<Statement>());
+//		
+//		
+//		return ret;
+//	}
 
 	public static String updateVotes(String myconcept,
 			Hashtable<String, ArrayList<String>> broaders,
@@ -255,16 +270,13 @@ public class SkosMapper {
 
 	public static String tableFormat(String e1, String e2, String notes,
 			String notes2, double scores, String explain) {
-		// String output = "<tr>\n";
-		// for(String e2:e2s){
+//		System.out.println(e1 + ", " + e2 + ", " + explain);
 		String output = "";
 		output += "<td>" + e1 + "</td>";
 		output += "<td>" + notes + "</td>";
 		output += "<td>" + e2 + "</td>";
 		output += "<td>" + notes2 + "</td>";
 		output += "<td title=\""+explain+"\">" + scores + "</td>";
-		// }
-		// output +="</tr>";
 		return output;
 	}
 

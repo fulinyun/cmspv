@@ -91,9 +91,9 @@ public class EntityFeatureModelSimilarity implements Similarity {
 	 */
 	private double pvSimilarity(Statement stmt1, Model m1, Statement stmt2, Model m2, int level) {
 
-		Property p1 = stmt1.getPredicate();
-		Property p2 = stmt2.getPredicate();
-		if (!p1.equals(p2) || !isSameProperty(p1.toString(), p2.toString())) return 0.0;
+		String p1 = stmt1.getPredicate().toString();
+		String p2 = stmt2.getPredicate().toString();
+		if (!p1.equals(p2) && !isSameProperty(p1, p2)) return 0.0;
 
 		RDFNode object1 = stmt1.getObject();
 		RDFNode object2 = stmt2.getObject();
@@ -117,6 +117,7 @@ public class EntityFeatureModelSimilarity implements Similarity {
 			String object2str = Utils.getDescriptionString(object2.toString(), m2);
 			return textSim.computeSimilarity(object1, m1, m2.createLiteral(object2str), m2, 1);
 		}
+		System.err.println("should never reach here - EntityFeatureModelSimilarity.pvSimilarity()");
 		return 0.0; // should never reach here
 
 	}
@@ -167,5 +168,57 @@ public class EntityFeatureModelSimilarity implements Similarity {
 		//
 		return false;
 
+	}
+
+	public String explainSimilarity(RDFNode r1, Model m1, RDFNode r2, Model m2,
+			int level, double score) {
+		if (level == 0 || !r1.isResource() || !r2.isResource())
+			return textSim.explainSimilarity(r1, m1, r2, m2, level, score);
+
+		List<Statement> topStmt1 = Utils.getDescriptions(m1, r1.asResource(), new ArrayList<Statement>());
+		List<Statement> topStmt2 = Utils.getDescriptions(m2, r2.asResource(), new ArrayList<Statement>());
+
+		if (topStmt1.isEmpty() || topStmt2.isEmpty())
+			return textSim.explainSimilarity(r1, m1, r2, m2, level, score);
+
+		StringBuilder ret = new StringBuilder();
+		HashSet<Statement> matchedStmt2 = new HashSet<Statement>();
+
+		// System.out.println(object1 +" "+ object2);
+		double pvSimSum = 0.0;
+		double object2_common = 0.0;
+		for (Statement stmt1 : topStmt1) {
+			double maxPVSim = 0.0;
+			Statement currentProcessedStmt2 = null;
+			for (Statement stmt2 : topStmt2) {
+				double pvSim = pvSimilarity(stmt1, m1, stmt2, m2, level);
+				if (pvSim > maxPVSim) {
+					maxPVSim = pvSim;
+					currentProcessedStmt2 = stmt2;
+				}
+			}
+			if (maxPVSim != 0.0) {
+
+				if (!matchedStmt2.contains(currentProcessedStmt2)) {
+					matchedStmt2.add(currentProcessedStmt2);
+					object2_common += maxPVSim;
+				}
+				pvSimSum += maxPVSim;
+				ret.append(stmt1.toString() + " vs. " + currentProcessedStmt2.toString() + " : " + maxPVSim + "&#13;");
+			}
+		}
+		ret.append("sum (sum1) : " + pvSimSum + "&#13;");
+		ret.append("sum on " + r2.toString() + " (sum2) : " + object2_common + "&#13;");
+		ret.append(r1.toString() + " statement size (size1) : " + topStmt1.size() + "&#13;");
+		ret.append(r2.toString() + " statement size (size2) : " + topStmt2.size() + "&#13;");
+		ret.append("alpha : " + alpha + "&#13;");
+		ret.append("beta : " + beta + "&#13;");
+		double object1_unique = topStmt1.size() - pvSimSum;
+		double object2_unique = topStmt2.size() - object2_common;
+		double EFMSimilarity = pvSimSum
+				/ (pvSimSum + alpha * (object1_unique) + beta
+						* (object2_unique));
+		ret.append("sum1/(sum1+alpha*(size1-sum1)+beta*(size2-sum2)) = " + EFMSimilarity);
+		return ret.toString().replace("\"", "");
 	}
 }
