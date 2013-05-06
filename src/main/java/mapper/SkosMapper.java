@@ -147,20 +147,22 @@ public class SkosMapper {
 				String label1 = "";
 				while (st1.hasNext()) {
 					Statement st = st1.next();
-					des1 += st.toString().replace("\"", "")+"&#13;";
+					des1 += Utils.labelify(model1, st).replace("\"", "")+"&#13;";
 					if (st.getPredicate().toString().equals("http://www.w3.org/2004/02/skos/core#prefLabel")) 
-						label1 = st.getObject().toString(); 
+						label1 = st.getObject().toString();
 				}
+				if (label1.equals("")) label1 = subject.getLocalName();
 
 				StmtIterator st2 = model2.listStatements(subject, p, v);
 				String des2 = "";
 				String label2 = "";
 				while (st2.hasNext()) {
 					Statement st = st2.next();
-					des2 += st.toString().replace("\"", "")+"&#13;";
+					des2 += Utils.labelify(model2, st).replace("\"", "")+"&#13;";
 					if (st.getPredicate().toString().equals("http://www.w3.org/2004/02/skos/core#prefLabel"))
 						label2 = st.getObject().toString();
 				}
+				if (label2.equals("")) label2 = subject.getLocalName();
 				
 				out.println("<tr>");
 				out.println(tableFormat(label2, label1, des2,

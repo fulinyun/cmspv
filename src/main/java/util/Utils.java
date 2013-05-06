@@ -10,8 +10,11 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
+import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.NodeIterator;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
@@ -168,13 +171,90 @@ public class Utils {
 		}
 	}
 	
+	public static void testGetPrefLabelOrLocalNames(String filename, String[] subjects) {
+		Model model = null;
+		try {
+			model = Utils.createSkosModel(filename);
+			
+			for (String subjectString : subjects) {
+				Resource subject = model.createResource(subjectString);
+				String label = getPrefLabelOrLocalName(model, subject);
+				System.out.println(subject.getURI() + " : " + label);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
+	public static void testLabelify(String filename, String[] subjects) {
+		Model model = null;
+		try {
+			model = Utils.createSkosModel(filename);
+			
+			for (String subjectString : subjects) {
+				Resource subject = model.createResource(subjectString);
+				StmtIterator si = model.listStatements(subject, (Property)null, (RDFNode)null);
+				while (si.hasNext()) {
+					System.out.println(labelify(model, si.next()));
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * get prefLabel, or local name if prefLabel is not available, of resource from model 
+	 * @param model
+	 * @param resource
+	 * @return
+	 */
+	public static String getPrefLabelOrLocalName(Model model, Resource resource) {
+		NodeIterator ni = model.listObjectsOfProperty(resource, model.createProperty("http://www.w3.org/2004/02/skos/core#prefLabel"));
+		if (ni.hasNext()) {
+			Literal lv = ni.next().asLiteral();
+			return lv.getString();
+		}
+		else return resource.getLocalName();
+	}
+
 	public static void main(String[] args) {
 		String[] gcmdStrings = {"http://gcmdservices.gsfc.nasa.gov/kms/concept/cabd97d6-aa6c-48b8-963b-79248634ce5d",
-				"http://gcmdservices.gsfc.nasa.gov/kms/concept/22c14e35-48a4-40b5-a503-add48c2d4cd4"};
-		testGetDescriptions("gcmd-sciencekeywords.rdf", gcmdStrings);
+			"http://gcmdservices.gsfc.nasa.gov/kms/concept/22c14e35-48a4-40b5-a503-add48c2d4cd4"};
+		testLabelify("gcmd-sciencekeywords.rdf", gcmdStrings);
+		System.out.println();
 		String[] nimsStrings = {"http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0082", 
-				"http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0053"};
-		testGetDescriptions("nims.ttl", nimsStrings);
+			"http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0053"};
+		testLabelify("nims.ttl", nimsStrings);
+
+//		String[] gcmdStrings = {"http://gcmdservices.gsfc.nasa.gov/kms/concept/cabd97d6-aa6c-48b8-963b-79248634ce5d",
+//			"http://gcmdservices.gsfc.nasa.gov/kms/concept/22c14e35-48a4-40b5-a503-add48c2d4cd4"};
+//		testGetPrefLabelOrLocalNames("gcmd-sciencekeywords.rdf", gcmdStrings);
+//		System.out.println();
+//		String[] nimsStrings = {"http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0082", 
+//			"http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0053"};
+//		testGetPrefLabelOrLocalNames("nims.ttl", nimsStrings);
+
+//		String[] gcmdStrings = {"http://gcmdservices.gsfc.nasa.gov/kms/concept/cabd97d6-aa6c-48b8-963b-79248634ce5d",
+//				"http://gcmdservices.gsfc.nasa.gov/kms/concept/22c14e35-48a4-40b5-a503-add48c2d4cd4"};
+//		testGetDescriptions("gcmd-sciencekeywords.rdf", gcmdStrings);
+//		String[] nimsStrings = {"http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0082", 
+//				"http://cmspv.tw.rpi.edu/rdf/vocab/nims/term/0053"};
+//		testGetDescriptions("nims.ttl", nimsStrings);
+	}
+
+	/**
+	 * extract labels from subject, predicate and object of a statement with getPrefLabelOrLocalName() to form a succinct representation of the statement
+	 * @param m
+	 * @param stmt
+	 * @return
+	 */
+	public static String labelify(Model model, Statement stmt) {
+		String obj;
+		RDFNode r = stmt.getObject();
+		if (r.isResource()) obj = getPrefLabelOrLocalName(model, r.asResource());
+		else obj = r.toString();
+		return getPrefLabelOrLocalName(model, stmt.getSubject()) + " <" + getPrefLabelOrLocalName(model, stmt.getPredicate()) + 
+				"> " + obj;
 	}
 }

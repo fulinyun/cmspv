@@ -8,10 +8,15 @@ import java.util.Map;
 
 import util.Utils;
 
+import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.NodeIterator;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
+import com.hp.hpl.jena.vocabulary.RDFS;
 
 public class EntityFeatureModelSimilarity implements Similarity {
 
@@ -193,13 +198,15 @@ public class EntityFeatureModelSimilarity implements Similarity {
 					object2_common += maxPVSim;
 				}
 				pvSimSum += maxPVSim;
-				ret.append(stmt1.toString() + " vs. " + currentProcessedStmt2.toString() + " : " + maxPVSim + "&#13;");
+				ret.append("[" + Utils.labelify(m1, stmt1) + "] vs. [" + Utils.labelify(m2, currentProcessedStmt2) + "] : " + maxPVSim + "&#13;");
 			}
 		}
 		ret.append("sum (sum1) : " + pvSimSum + "&#13;");
-		ret.append("sum on " + r2.toString() + " (sum2) : " + object2_common + "&#13;");
-		ret.append(r1.toString() + " statement size (size1) : " + topStmt1.size() + "&#13;");
-		ret.append(r2.toString() + " statement size (size2) : " + topStmt2.size() + "&#13;");
+		String label1 = Utils.getPrefLabelOrLocalName(m1, r1.asResource());
+		String label2 = Utils.getPrefLabelOrLocalName(m2, r2.asResource());
+		ret.append("sum on " + label2 + " (sum2) : " + object2_common + "&#13;");
+		ret.append(label1 + " statement size (size1) : " + topStmt1.size() + "&#13;");
+		ret.append(label2 + " statement size (size2) : " + topStmt2.size() + "&#13;");
 		ret.append("alpha : " + alpha + "&#13;");
 		ret.append("beta : " + beta + "&#13;");
 		double object1_unique = topStmt1.size() - pvSimSum;
@@ -210,4 +217,5 @@ public class EntityFeatureModelSimilarity implements Similarity {
 		ret.append("sum1/(sum1+alpha*(size1-sum1)+beta*(size2-sum2)) = " + EFMSimilarity);
 		return ret.toString().replace("\"", "");
 	}
+	
 }
