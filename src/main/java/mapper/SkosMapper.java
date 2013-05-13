@@ -32,6 +32,7 @@ public class SkosMapper {
 	public static void main(String[] args) {
 //		mainTestEntryAndPriorityQueue();
 //		mainTest();
+//		mainDebugExplanation();
 		mainMap(args);
 	}
 
@@ -78,6 +79,84 @@ public class SkosMapper {
 		}
 	}
 	
+	public static void mainDebugExplanation() {
+		String onto1 = "gcmd-sciencekeywords.rdf";
+		String onto2 = "nims.ttl";
+		int level = 2;
+		String prefix = "http://cmspv.tw.rpi.edu/rdf/";
+		
+		Model model1 = null;
+		Model model2 = null;
+		try {
+			model1 = Utils.createSkosModel(onto1);
+			model2 = Utils.createSkosModel(onto2);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		Similarity sim = new EntityFeatureModelSimilarity();
+		ResIterator subjects = model2.listSubjects();
+		int limit = 10;
+		int count = 0;
+		// for each subject in model2 (args[1]), find 4 matches from model1 (args[0])
+		while (subjects.hasNext() && count < limit) {
+			Resource subject = subjects.next();
+			if (!subject.toString().startsWith(prefix)) continue;
+			System.out.println("matching... (" + subject.toString() + ")");
+
+			PriorityQueue<Map.Entry<Resource, Double>> matches = new PriorityQueue<Map.Entry<Resource, Double>>(
+					4, new Comparator<Map.Entry<Resource, Double>>() {
+
+						public int compare(Entry<Resource, Double> e1,
+								Entry<Resource, Double> e2) {
+							double v1 = e1.getValue();
+							double v2 = e2.getValue();
+							if (v1 > v2) return 1;
+							if (v1 < v2) return -1;
+							return 0;
+						}
+				
+					});
+			HashMap<Resource, String> explanation = new HashMap<Resource, String>();
+			findMatches(subject, model2, model1, sim, level, 4, matches, explanation);
+
+			for (Map.Entry<Resource, Double> match : matches) {
+				Resource s = match.getKey();
+				Property p = null;
+				RDFNode v = null;
+
+				StmtIterator st1 = model1.listStatements(s, p, v);
+				String des1 = "";
+				String label1 = "";
+				while (st1.hasNext()) {
+					Statement st = st1.next();
+					des1 += Utils.labelify(model1, st).replace("\"", "")+"\n";
+					if (st.getPredicate().toString().equals("http://www.w3.org/2004/02/skos/core#prefLabel")) 
+						label1 = st.getObject().toString();
+				}
+				if (label1.equals("")) label1 = subject.getLocalName();
+
+				StmtIterator st2 = model2.listStatements(subject, p, v);
+				String des2 = "";
+				String label2 = "";
+				while (st2.hasNext()) {
+					Statement st = st2.next();
+					des2 += Utils.labelify(model2, st).replace("\"", "")+"\n";
+					if (st.getPredicate().toString().equals("http://www.w3.org/2004/02/skos/core#prefLabel"))
+						label2 = st.getObject().toString();
+				}
+				if (label2.equals("")) label2 = subject.getLocalName();
+				
+				System.out.println("<tr>");
+				System.out.println(tableFormat(label2, label1, des2,
+						des1, match.getValue(), explanation.get(s)));
+				System.out.println("</tr>");
+			}
+			++count;
+		}
+
+	}
+	
 	public static void mainMap(String[] args) {
 		
 		if (args.length < 5) {
@@ -108,6 +187,8 @@ public class SkosMapper {
 			out.println("<!doctype html>");
 			out.println("<html><head><title>"+onto2+" to "+onto1+" mapping</title></head><body>");
 			out.println("<table border=1>");
+			out.println("<thead><tr><th>resource in "+onto2+"</th><th>resource in "+onto1+
+					"</th><th>similarity score</th></tr></thead><tbody>");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -172,7 +253,7 @@ public class SkosMapper {
 		}
 
 		try {
-			out.println("</table></body></html>");
+			out.println("</tbody></table></body></html>");
 			out.close();
 		} catch (Exception e) {
 			e.printStackTrace();
